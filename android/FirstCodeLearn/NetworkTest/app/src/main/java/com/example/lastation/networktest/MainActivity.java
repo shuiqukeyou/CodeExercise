@@ -2,6 +2,7 @@ package com.example.lastation.networktest;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Button sendRequest = (Button)findViewById(R.id.send_request);
         responseText = (TextView)findViewById(R.id.response_test);
         sendRequest.setOnClickListener(this);
@@ -53,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     while ((line = reader.readLine()) != null) {
                         response.append(line);
                     }
-                    showResponsee(response.toString());
+                    System.out.print(response.toString());
+                    showResponse(response.toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
@@ -72,11 +75,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }).start();
     }
 
-    private void showResponsee(final String  s) {
+    private void showResponse(final String  response) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                responseText.setText(s);
+                responseText.setText(response);
             }
         });
     }
