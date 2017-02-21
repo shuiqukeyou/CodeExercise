@@ -7,6 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -17,6 +24,9 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
+
+import javax.xml.parsers.SAXParserFactory;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -51,18 +61,59 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try {
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
-                            .url("http://10.0.2.1/get_data.xml")
+                            .url("http://10.0.2.1/get_data.json")
                             .build();
                     Response response = client.newCall(request).execute();
-                    Log.d("xxx","xxx");
-                    String responseDta = response.body().string();
-//                    showResponse(responseDta);
-                    parseXMLWithPull(responseDta);
+                    String responseData = response.body().string();
+//                    showResponse(responseData);
+//                    parseXMLWithPull(responseData);
+//                    parseXMLWithSAX(responseData);
+//                    parseJSONWithJSONObject(responseData);
+                    parseJSONWithGSON(responseData);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+    }
+
+    private void parseJSONWithGSON(String responseData) {
+        Gson gson = new Gson();
+        List<App> appList = gson.fromJson(responseData, new TypeToken<List<App>>(){}.getType());
+        for (App app:appList) {
+            Log.d("MainActivity", "id is " + app.getId());
+            Log.d("MainActivity", "name is " + app.getName());
+            Log.d("MainActivity", "version is " + app.getVetsion());
+        }
+    }
+
+    private void parseJSONWithJSONObject(String responseData) {
+        try {
+            JSONArray jsonArray = new JSONArray(responseData);
+            for (int i = 0; i < jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String id = jsonObject.getString("id");
+                String name = jsonObject.getString("name");
+                String version = jsonObject.getString("version");
+                Log.d("MainActivity", "id is " + id);
+                Log.d("MainActivity", "name is " + name);
+                Log.d("MainActivity", "version is " + version);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void parseXMLWithSAX(String responseDta) {
+        try {
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            XMLReader xmlReader = factory.newSAXParser().getXMLReader();
+            ContenHandler handler = new ContenHandler();
+            xmlReader.setContentHandler(handler);
+            xmlReader.parse(new InputSource(new StringReader(responseDta)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void parseXMLWithPull(String responseDta) {
