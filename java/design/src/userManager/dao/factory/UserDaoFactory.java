@@ -7,7 +7,7 @@ public class UserDaoFactory {
 	private UserDaoFactory(){
 	}
 	
-	private static UserDAO getUserDAO() {
+	public static UserDAO getUserDAO() {
 		return new UserDaoMysqlIpml();
 	}
 }
