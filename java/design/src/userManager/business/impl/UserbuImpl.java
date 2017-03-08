@@ -2,16 +2,16 @@ package userManager.business.impl;
 
 import java.util.UUID;
 
-import userManager.business.api.UserAPI;
+import userManager.business.api.UserBuAPI;
 import userManager.dao.api.UserDAO;
 import userManager.dao.factory.UserDaoFactory;
 import userManager.vo.UserVO;
 
-public class UserImpl implements UserAPI {
+public class UserbuImpl implements UserBuAPI {
 	//获取Dao对象
 	UserDAO dao = UserDaoFactory.getUserDAO();
 	
-	public UserImpl(){
+	public UserbuImpl(){
 	}
 	
 	@Override
