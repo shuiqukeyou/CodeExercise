@@ -6,7 +6,7 @@ public class UserDAOFactory {
 	private UserDAOFactory(){
 	}
 	
-	public static UserDAOImpl vgetUserDAO() {
+	public static UserDAOImpl getUserDAO() {
 		return new UserDAOImpl();
 	}
 }

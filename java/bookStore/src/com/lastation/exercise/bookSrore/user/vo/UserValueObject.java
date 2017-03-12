@@ -1,4 +1,7 @@
 package com.lastation.exercise.bookSrore.user.vo;
+
+import java.io.Serializable;
+
 /**
  * 
  * @author <a href="mailto:shuiqukeyou@gmail.com">ShuiQu</a>
@@ -6,7 +9,10 @@ package com.lastation.exercise.bookSrore.user.vo;
  * @fileName UserValueObject.java
  */
 
-public class UserValueObject {
+public class UserValueObject implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private String uuid;
 	private String userName;
 	private String passWd;
