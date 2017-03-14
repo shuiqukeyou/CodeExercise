@@ -18,7 +18,7 @@ public class UserDAOImpl implements UserDAO{
 		
 		// 检查当前数据库文件是否已存在当前用户
 		for (UserValueObject u:userList){
-			if (u.equals(user)) {
+			if (u.getUuid().equals(user.getUuid())) {
 				return false;
 			}
 		}
@@ -57,6 +57,7 @@ public class UserDAOImpl implements UserDAO{
 			if (userList.get(i).getUuid().equals(user.getUuid())) {
 				userList.remove(i);
 				userList.add(i, user);
+				FileIOUitl.FileOut(FILE_NAME, userList);
 				return true;
 			}
 		}		
@@ -85,8 +86,39 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public List<UserValueObject> findByCondition(UserQueryValueObject uqvo) {
-		// TODO Auto-generated method stub
-		return null;
+		List<UserValueObject> userList = new ArrayList<UserValueObject>();
+		userList = FileIOUitl.FileInput(FILE_NAME);
+		
+		List<UserValueObject> userlist2 = new ArrayList<>();
+		for (UserValueObject uvo:userList) {
+			// 若UUID条件存在
+			if (uqvo != null && uqvo.getUuid() != null){
+				// 若UUID不符合，下一个
+				if (!uvo.getUuid().equals(uqvo)) {
+					continue;
+				}
+			}
+			
+			// 若用户名条件存在
+			if (uqvo != null && uqvo.getUserName() != null) {
+				// 若用户名不符合，下一个
+				if (!uvo.getUserName().equals(uqvo.getUserName())) {
+					continue;
+				}
+			}
+			
+			// 若用户类型存在
+			if (uqvo != null && uqvo.getType() > 0) {
+				// 若用户类型不符合，下一个
+				if (uvo.getType() != uqvo.getType()) {
+					continue;
+				}
+			}
+			// 全部复合则加入集合
+			userlist2.add(uvo);
+
+		}
+		return userlist2;
 	}
 
 }

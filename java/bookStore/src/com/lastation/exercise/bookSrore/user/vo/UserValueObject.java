@@ -76,4 +76,9 @@ public class UserValueObject implements Serializable{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return uuid + "：用户名:" + userName + "，用户类型:" + type;
+	}
 }
