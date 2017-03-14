@@ -12,8 +12,6 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
-
 public class FileIOUitl {
 	
 	private FileIOUitl(){
@@ -22,7 +20,7 @@ public class FileIOUitl {
 	//读取数据文件
 	@SuppressWarnings("unchecked")
 	public static<E> List<E> FileInput(String name) {
-		List<E> list = null;
+		List<E> list = new ArrayList<>();
 		File file = new File(name);
 		if (file.exists()) {
 			ObjectInputStream in = null;
