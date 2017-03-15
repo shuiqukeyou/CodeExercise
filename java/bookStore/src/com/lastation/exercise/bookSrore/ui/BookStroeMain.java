@@ -4,10 +4,10 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 public class BookStroeMain extends JFrame {
-	
-	
+	public static JPanel nowJPanel = null;
 	/**
 	 * Launch the application.
 	 */
@@ -15,12 +15,13 @@ public class BookStroeMain extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					BookStroeMain frame = new BookStroeMain();
 					frame.setSize(800, 600);
 					frame.setLocation(300, 200);
 					frame.setVisible(true);
-					JPanel panel = new MainJPanel(frame);
-					frame.setContentPane(panel);
+					nowJPanel = new MainJPanel(frame);
+					frame.setContentPane(nowJPanel);
 					frame.validate();
 				} catch (Exception e) {
 					e.printStackTrace();

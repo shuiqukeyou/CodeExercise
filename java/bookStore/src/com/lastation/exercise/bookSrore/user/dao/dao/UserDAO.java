@@ -18,7 +18,7 @@ public interface UserDAO {
 	 * @param user 将要被删除的用户的uuid
 	 * @return 删除成功则返回true，否则返回false
 	 */
-	boolean delete(String uuid);
+	boolean delete(int uuid);
 	
 	/**
 	 * 更新用户信息
@@ -27,7 +27,7 @@ public interface UserDAO {
 	 */
 	boolean update(UserValueObject user);
 	
-	UserValueObject findUser(String uuid);
+	UserValueObject findUser(int uuid);
 	List<UserValueObject> findAll();
 	List<UserValueObject> findByCondition(UserQueryValueObject uqvo);
 }

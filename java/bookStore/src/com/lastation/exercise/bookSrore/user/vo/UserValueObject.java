@@ -2,6 +2,8 @@ package com.lastation.exercise.bookSrore.user.vo;
 
 import java.io.Serializable;
 
+import com.lastation.exercise.bookSrore.common.UserEnum;
+
 /**
  * 
  * @author <a href="mailto:shuiqukeyou@gmail.com">ShuiQu</a>
@@ -13,25 +15,31 @@ public class UserValueObject implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private String uuid;
+	private int uuid;
 	private String userName;
 	private String passWd;
-	private Integer type;
+	private UserEnum type;
 	
 	public UserValueObject(){
 	}
 	
-	public UserValueObject(String uuid, String username, String passWd, int type) {
+	public UserValueObject(String username, String passWd, UserEnum type) {
+		this.userName = username;
+		this.passWd = passWd;
+		this.type = type;
+	}
+	
+	public UserValueObject(int uuid, String username, String passWd, UserEnum type) {
 		this.uuid = uuid;
 		this.userName = username;
 		this.passWd = passWd;
 		this.type = type;
 	}
 	
-	public String getUuid() {
+	public int getUuid() {
 		return uuid;
 	}
-	public void setUuid(String uuid) {
+	public void setUuid(int uuid) {
 		this.uuid = uuid;
 	}
 	public String getUserName() {
@@ -46,20 +54,23 @@ public class UserValueObject implements Serializable{
 	public void setPassWd(String passWd) {
 		this.passWd = passWd;
 	}
-	public int getType() {
+	public UserEnum getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(UserEnum type) {
 		this.type = type;
 	}
 	
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((uuid == null) ? 0 : uuid.hashCode());
+		result = prime * result + uuid;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -69,16 +80,20 @@ public class UserValueObject implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		UserValueObject other = (UserValueObject) obj;
-		if (uuid == null) {
-			if (other.uuid != null)
-				return false;
-		} else if (!uuid.equals(other.uuid))
+		if (uuid != other.uuid)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return uuid + "：用户名:" + userName + "，用户类型:" + type;
+		return "id: " + uuid + "  用户名: " + userName + "  用户类型: " + type.getName();
+	}
+
+	public void update(UserValueObject user) {
+		this.userName = user.userName;
+		this.passWd = user.passWd;
+		this.type = user.type;
+		
 	}
 }

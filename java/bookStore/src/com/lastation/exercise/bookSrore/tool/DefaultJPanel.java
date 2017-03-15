@@ -11,15 +11,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.lastation.exercise.bookSrore.book.ui.BookManage;
+import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 import com.lastation.exercise.bookSrore.user.ui.UserManage;
+
 import java.awt.FlowLayout;
 
 public class DefaultJPanel extends JPanel {
+	protected JButton btnBookManage;
+	protected JButton btnInManage;
+	protected JButton btnOutManage;
+	protected JButton btnUserManage;
 
 	/**
 	 * Create the panel.
 	 */
-	public DefaultJPanel(final JFrame mainJFrame, String title) {
+	public DefaultJPanel(final BookStroeMain mainJFrame, String title) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		setSize(800, 600);
@@ -31,7 +37,7 @@ public class DefaultJPanel extends JPanel {
 		add(jPanel);
 		jPanel.setLayout(null);
 		
-		JButton btnBookManage = new JButton("图书管理");
+		btnBookManage = new JButton("图书管理");
 		btnBookManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JPanel panel = new BookManage(mainJFrame);
@@ -42,7 +48,7 @@ public class DefaultJPanel extends JPanel {
 		btnBookManage.setBounds(27, 77, 93, 23);
 		jPanel.add(btnBookManage);
 		
-		JButton btnInManage = new JButton("进货管理");
+		btnInManage = new JButton("进货管理");
 		btnInManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 进货管理待写
@@ -51,7 +57,7 @@ public class DefaultJPanel extends JPanel {
 		btnInManage.setBounds(27, 144, 93, 23);
 		jPanel.add(btnInManage);
 		
-		JButton btnOutManage = new JButton("出售管理");
+		btnOutManage = new JButton("出售管理");
 		btnOutManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 出售管理待写
@@ -60,7 +66,7 @@ public class DefaultJPanel extends JPanel {
 		btnOutManage.setBounds(27, 200, 93, 23);
 		jPanel.add(btnOutManage);
 		
-		JButton btnUserManage = new JButton("用户管理");
+		btnUserManage = new JButton("用户管理");
 		btnUserManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JPanel panel = new UserManage(mainJFrame);
