@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.lastation.exercise.bookSrore.book.ui.BookManage;
+import com.lastation.exercise.bookSrore.in.ui.InManage;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 import com.lastation.exercise.bookSrore.user.ui.UserManage;
 
@@ -51,7 +52,9 @@ public class DefaultJPanel extends JPanel {
 		btnInManage = new JButton("进货管理");
 		btnInManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO 进货管理待写
+				JPanel panel = new InManage(mainJFrame);
+				mainJFrame.setContentPane(panel);
+				mainJFrame.validate();
 			}
 		});
 		btnInManage.setBounds(27, 144, 93, 23);
