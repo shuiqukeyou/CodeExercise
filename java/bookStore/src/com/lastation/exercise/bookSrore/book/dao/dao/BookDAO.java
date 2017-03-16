@@ -3,16 +3,16 @@ package com.lastation.exercise.bookSrore.book.dao.dao;
 import java.util.List;
 
 import com.lastation.exercise.bookSrore.book.vo.BookQueryValueObject;
-import com.lastation.exercise.bookSrore.book.vo.BookValueObject;
+import com.lastation.exercise.bookSrore.book.vo.InMainValueObject;
 
 public interface BookDAO {
 
-	public boolean create(BookValueObject book);
+	public boolean create(InMainValueObject book);
 	public boolean delete(Integer uuid);
-	public boolean update(BookValueObject book);
+	public boolean update(InMainValueObject book);
 	
 
-	public BookValueObject findBook(Integer uuid);
-	public List<BookValueObject> findBookAll();
-	public List<BookValueObject> findBookByQuery(BookQueryValueObject bqvo);
+	public InMainValueObject findBook(Integer uuid);
+	public List<InMainValueObject> findBookAll();
+	public List<InMainValueObject> findBookByQuery(BookQueryValueObject bqvo);
 }

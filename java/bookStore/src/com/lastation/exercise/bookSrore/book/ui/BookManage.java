@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import com.lastation.exercise.bookSrore.book.business.ebi.BookEbi;
 import com.lastation.exercise.bookSrore.book.business.factory.BookBusFactory;
 import com.lastation.exercise.bookSrore.book.vo.BookQueryValueObject;
-import com.lastation.exercise.bookSrore.book.vo.BookValueObject;
+import com.lastation.exercise.bookSrore.book.vo.InMainValueObject;
 import com.lastation.exercise.bookSrore.tool.DefaultJPanel;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 
@@ -52,7 +52,7 @@ public class BookManage extends DefaultJPanel {
 		JButton btnDel = new JButton("删除书籍");
 		btnDel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BookValueObject uvo = (BookValueObject) list.getSelectedValue();
+				InMainValueObject uvo = (InMainValueObject) list.getSelectedValue();
 				if (uvo == null) {
 					JOptionPane.showMessageDialog(null,"请选择需要删除的书籍");
 					return;
@@ -68,7 +68,7 @@ public class BookManage extends DefaultJPanel {
 		JButton btnUpdate = new JButton("修改书籍");
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BookValueObject uvo = (BookValueObject) list.getSelectedValue();
+				InMainValueObject uvo = (InMainValueObject) list.getSelectedValue();
 				if (uvo == null) {
 					JOptionPane.showMessageDialog(null,"请选择需要修改的书籍");
 					return;
@@ -248,7 +248,7 @@ public class BookManage extends DefaultJPanel {
 	}
 	
 	public void listRefresh(){
-		List<BookValueObject> BookList = ub.findAll();
+		List<InMainValueObject> BookList = ub.findAll();
 		list.setListData(BookList.toArray());
 	}
 	

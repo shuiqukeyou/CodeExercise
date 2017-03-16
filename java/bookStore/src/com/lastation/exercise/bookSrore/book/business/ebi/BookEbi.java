@@ -3,7 +3,7 @@ package com.lastation.exercise.bookSrore.book.business.ebi;
 import java.util.List;
 
 import com.lastation.exercise.bookSrore.book.vo.BookQueryValueObject;
-import com.lastation.exercise.bookSrore.book.vo.BookValueObject;
+import com.lastation.exercise.bookSrore.book.vo.InMainValueObject;
 import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
 
 public interface BookEbi {
@@ -12,7 +12,7 @@ public interface BookEbi {
 	 * @param user 将要被创建的用户对象
 	 * @return 创建成功则返回true，否则返回false
 	 */
-	boolean create(BookValueObject book);
+	boolean create(InMainValueObject book);
 	
 	/**
 	 * 删除用户
@@ -26,9 +26,9 @@ public interface BookEbi {
 	 * @param user 将要更新的用户对象
 	 * @return 更新成功则返回true，否则返回false
 	 */
-	boolean update(BookValueObject book);
+	boolean update(InMainValueObject book);
 	
-	BookValueObject findBook(int uuid);
-	List<BookValueObject> findAll();
-	List<BookValueObject> findByCondition(BookQueryValueObject bqvo);
+	InMainValueObject findBook(int uuid);
+	List<InMainValueObject> findAll();
+	List<InMainValueObject> findByCondition(BookQueryValueObject bqvo);
 }
