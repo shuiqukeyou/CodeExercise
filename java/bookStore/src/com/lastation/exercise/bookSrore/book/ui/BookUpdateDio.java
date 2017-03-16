@@ -113,13 +113,33 @@ public class BookUpdateDio extends JDialog {
 				JButton okButton = new JButton("确认");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Boolean boo = bebi.delete(uvo.getUuid());
+						String name = tfdName.getText();
+						String no = tfdNo.getText();
+						String inStr = tfdInPrice.getText();
+						String saleStr = tfdSalePrice.getText();
+						Double in = 0.0;
+						Double sale = 0.0;
+						try {
+							in = Double.valueOf(inStr);
+						} catch (NumberFormatException er){
+							JOptionPane.showMessageDialog(null, "请输入正确的进价");
+						} 
+						try {
+							sale = Double.valueOf(saleStr);
+						} catch (NumberFormatException er){
+							JOptionPane.showMessageDialog(null, "请输入正确的进价");
+						} 
+						uvo.setBookName(name);
+						uvo.setBookNo(no);
+						uvo.setInPrice(in);
+						uvo.setSalePrice(sale);
+						Boolean boo = bebi.update(uvo);
 						if (boo) {
-							JOptionPane.showMessageDialog(null, "删除成功");
+							JOptionPane.showMessageDialog(null, "修改成功");
 							nowJPanl.listRefresh();
 							dispose();
 						} else {
-							JOptionPane.showMessageDialog(null, "删除失败");
+							JOptionPane.showMessageDialog(null, "修改失败");
 							dispose();
 						}
 					}
