@@ -2,7 +2,8 @@ package com.lastation.exercise.bookSrore.in.vo;
 
 public class InMainQueryValueObject {
 	private int uuid;
-	private long inDate;
+	private long inDateMin;
+	private long inDateMax;
 	private int inUserUuid;
 	public int getUuid() {
 		return uuid;
@@ -10,11 +11,18 @@ public class InMainQueryValueObject {
 	public void setUuid(int uuid) {
 		this.uuid = uuid;
 	}
-	public long getInDate() {
-		return inDate;
+	
+	public long getInDateMin() {
+		return inDateMin;
 	}
-	public void setInDate(long inDate) {
-		this.inDate = inDate;
+	public void setInDateMin(long inDateMin) {
+		this.inDateMin = inDateMin;
+	}
+	public long getInDateMax() {
+		return inDateMax;
+	}
+	public void setInDateMax(long inDateMax) {
+		this.inDateMax = inDateMax;
 	}
 	public int getInUserUuid() {
 		return inUserUuid;

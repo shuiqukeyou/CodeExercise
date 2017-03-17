@@ -4,8 +4,10 @@ public class InDetailQueryValueObject {
 	private int uuid;
 	private int inUuid;// 进货单ID
 	private int bookUuid;// 书ID
-	private int num;// 本数
-	private double sumMoney;// 总价
+	private int numMin;// 本数下界
+	private int numMax;// 本数上界
+	private double sumMoneyMin;// 总价上界
+	private double sumMoneyMax;// 总价下界
 	public int getUuid() {
 		return uuid;
 	}
@@ -24,17 +26,30 @@ public class InDetailQueryValueObject {
 	public void setBookUuid(int bookUuid) {
 		this.bookUuid = bookUuid;
 	}
-	public int getNum() {
-		return num;
+	
+	public int getNumMin() {
+		return numMin;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setNumMin(int numMin) {
+		this.numMin = numMin;
 	}
-	public double getSumMoney() {
-		return sumMoney;
+	public int getNumMax() {
+		return numMax;
 	}
-	public void setSumMoney(double sumMoney) {
-		this.sumMoney = sumMoney;
+	public void setNumMax(int numMax) {
+		this.numMax = numMax;
+	}
+	public double getSumMoneyMin() {
+		return sumMoneyMin;
+	}
+	public void setSumMoneyMin(double sumMoneyMin) {
+		this.sumMoneyMin = sumMoneyMin;
+	}
+	public double getSumMoneyMax() {
+		return sumMoneyMax;
+	}
+	public void setSumMoneyMax(double sumMoneyMax) {
+		this.sumMoneyMax = sumMoneyMax;
 	}
 	@Override
 	public int hashCode() {

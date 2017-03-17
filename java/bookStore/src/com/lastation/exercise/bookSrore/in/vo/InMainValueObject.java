@@ -1,9 +1,20 @@
 package com.lastation.exercise.bookSrore.in.vo;
 
-public class InMainValueObject {
+import java.io.Serializable;
+
+public class InMainValueObject implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int uuid;
-	private long inDate;
-	private int inUserUuid;
+	private long inDate; // 进货日期
+	private int inUserUuid;// 进货人
+	
+	public void update(InMainValueObject imvo) {
+		this.inDate = imvo.inDate;
+		this.inUserUuid = imvo.inUserUuid;
+	}
 	public int getUuid() {
 		return uuid;
 	}
