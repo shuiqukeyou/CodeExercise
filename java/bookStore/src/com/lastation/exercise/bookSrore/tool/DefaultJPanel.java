@@ -8,12 +8,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.lastation.exercise.bookSrore.book.ui.BookManage;
+import com.lastation.exercise.bookSrore.common.UserEnum;
 import com.lastation.exercise.bookSrore.in.ui.InManage;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
+import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
+import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
 import com.lastation.exercise.bookSrore.user.ui.UserManage;
+import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
 
 import java.awt.FlowLayout;
 
@@ -22,6 +27,7 @@ public class DefaultJPanel extends JPanel {
 	protected JButton btnInManage;
 	protected JButton btnOutManage;
 	protected JButton btnUserManage;
+	private UserEbi ue = UserBusinessFactory.getUserBusinessImpl();
 
 	/**
 	 * Create the panel.
@@ -41,6 +47,16 @@ public class DefaultJPanel extends JPanel {
 		btnBookManage = new JButton("图书管理");
 		btnBookManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				UserValueObject user = ue.findUser(mainJFrame.getUserId());
+				if (user == null) {
+					JOptionPane.showMessageDialog(null, "请先登录");
+					return;
+				}
+				UserEnum userType = user.getType();
+				if ((!userType.equals(UserEnum.ADMIN)) && (!userType.equals(UserEnum.BOOK))) {
+					JOptionPane.showMessageDialog(null, "没有权限");
+					return;
+				}
 				JPanel panel = new BookManage(mainJFrame);
 				mainJFrame.setContentPane(panel);
 				mainJFrame.validate();
@@ -52,6 +68,16 @@ public class DefaultJPanel extends JPanel {
 		btnInManage = new JButton("进货管理");
 		btnInManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				UserValueObject user = ue.findUser(mainJFrame.getUserId());
+				if (user == null) {
+					JOptionPane.showMessageDialog(null, "请先登录");
+					return;
+				}
+				UserEnum userType = user.getType();
+				if ((!userType.equals(UserEnum.ADMIN)) && (!userType.equals(UserEnum.IN))) {
+					JOptionPane.showMessageDialog(null, "没有权限");
+					return;
+				}
 				JPanel panel = new InManage(mainJFrame);
 				mainJFrame.setContentPane(panel);
 				mainJFrame.validate();
@@ -63,6 +89,16 @@ public class DefaultJPanel extends JPanel {
 		btnOutManage = new JButton("出售管理");
 		btnOutManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				UserValueObject user = ue.findUser(mainJFrame.getUserId());
+				if (user == null) {
+					JOptionPane.showMessageDialog(null, "请先登录");
+					return;
+				}
+				UserEnum userType = user.getType();
+				if ((!userType.equals(UserEnum.ADMIN)) && (!userType.equals(UserEnum.OUT))) {
+					JOptionPane.showMessageDialog(null, "没有权限");
+					return;
+				}
 				// TODO 出售管理待写
 			}
 		});
@@ -72,6 +108,16 @@ public class DefaultJPanel extends JPanel {
 		btnUserManage = new JButton("用户管理");
 		btnUserManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				UserValueObject user = ue.findUser(mainJFrame.getUserId());
+				if (user == null) {
+					JOptionPane.showMessageDialog(null, "请先登录");
+					return;
+				}
+				UserEnum userType = user.getType();
+				if (!userType.equals(UserEnum.ADMIN)) {
+					JOptionPane.showMessageDialog(null, "没有权限");
+					return;
+				}
 				JPanel panel = new UserManage(mainJFrame);
 				mainJFrame.setContentPane(panel);
 				mainJFrame.validate();

@@ -8,6 +8,9 @@ import javax.swing.UIManager;
 
 public class BookStroeMain extends JFrame {
 	public static JPanel nowJPanel = null;
+	private int userId;
+
+
 	/**
 	 * Launch the application.
 	 */
@@ -38,5 +41,13 @@ public class BookStroeMain extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		getContentPane().setLayout(null);
+	}
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 }
