@@ -2,7 +2,7 @@ package com.lastation.exercise.bookSrore.book.vo;
 
 import java.io.Serializable;
 
-public class InMainValueObject implements Serializable{
+public class BookValueObject implements Serializable{
 	/**
 	 * 
 	 */
@@ -13,10 +13,10 @@ public class InMainValueObject implements Serializable{
 	private double inPrice;
 	private double salePrice;
 	
-	public InMainValueObject(){
+	public BookValueObject(){
 	}
 	
-	public InMainValueObject(String bookNo, String bookName, double inPrice, double salePrice){
+	public BookValueObject(String bookNo, String bookName, double inPrice, double salePrice){
 		this.bookNo = bookNo;
 		this.bookName = bookName;
 		this.inPrice = inPrice;
@@ -80,13 +80,13 @@ public class InMainValueObject implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		InMainValueObject other = (InMainValueObject) obj;
+		BookValueObject other = (BookValueObject) obj;
 		if (uuid != other.uuid)
 			return false;
 		return true;
 	}
 
-	public void update(InMainValueObject book) {
+	public void update(BookValueObject book) {
 		this.bookNo = book.bookNo;
 		this.bookName = book.bookName;
 		this.inPrice = book.inPrice;
@@ -98,5 +98,8 @@ public class InMainValueObject implements Serializable{
 		return "ID：" + uuid + "  书名：" + bookName + "  书号：" + bookNo + "  进价：" + inPrice + "  售价" + salePrice;
 	}
 	
+	public String toInString(){
+		return "书名：" + bookName + "  书号：" + bookNo + "  进价：" + inPrice + "  售价" + salePrice;
+	}
 	
 }

@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.lastation.exercise.bookSrore.book.business.ebi.BookEbi;
 import com.lastation.exercise.bookSrore.book.business.factory.BookBusFactory;
-import com.lastation.exercise.bookSrore.book.vo.InMainValueObject;
+import com.lastation.exercise.bookSrore.book.vo.BookValueObject;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 
 public class AddBookDio extends JDialog {
@@ -110,7 +110,7 @@ public class AddBookDio extends JDialog {
 							JOptionPane.showMessageDialog(null, "请输入正确的售价");
 							return;
 						}
-						InMainValueObject book = new InMainValueObject();
+						BookValueObject book = new BookValueObject();
 						book.setBookName(bookName);
 						book.setBookNo(bookNo);
 						book.setInPrice(inPrice);

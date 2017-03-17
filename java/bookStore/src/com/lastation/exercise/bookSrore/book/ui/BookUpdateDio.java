@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.lastation.exercise.bookSrore.book.business.ebi.BookEbi;
 import com.lastation.exercise.bookSrore.book.business.factory.BookBusFactory;
-import com.lastation.exercise.bookSrore.book.vo.InMainValueObject;
+import com.lastation.exercise.bookSrore.book.vo.BookValueObject;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 
 public class BookUpdateDio extends JDialog {
@@ -31,7 +31,7 @@ public class BookUpdateDio extends JDialog {
 
 
 	public BookUpdateDio(final BookManage nowJPanl, BookStroeMain mainJFrame,
-			final InMainValueObject uvo) {
+			final BookValueObject uvo) {
 		setBounds(mainJFrame.getX()+150, mainJFrame.getY()+100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
