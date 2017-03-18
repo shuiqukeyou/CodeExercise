@@ -1,11 +1,14 @@
 package com.lastation.exercise.bookSrore.ui;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.lastation.exercise.bookSrore.common.UserEnum;
-import com.lastation.exercise.bookSrore.tool.DefaultJPanel;
+import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
+import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
+import com.lastation.exercise.bookSrore.user.vo.UserQueryValueObject;
 import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
 
 import javax.swing.JLabel;
@@ -16,6 +19,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class MainJPanel extends DefaultJPanel {
 	private JTextField textField;
@@ -23,6 +27,7 @@ public class MainJPanel extends DefaultJPanel {
 	private JFrame mainJFrame;
 	private JTextField tfdUserName;
 	private JPasswordField pwd;
+	private UserEbi ue = UserBusinessFactory.getUserBusinessImpl();
 
 	/**
 	 * Create the panel.
@@ -53,8 +58,23 @@ public class MainJPanel extends DefaultJPanel {
 		JButton btnlogin = new JButton("登录");
 		btnlogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO 登录系统待写
-				mainJFrame.setUserId(1);
+				String userName = tfdUserName.getText();
+				String passwd = String.valueOf(pwd.getPassword());
+				UserQueryValueObject uqvo = new UserQueryValueObject();
+				uqvo.setUserName(userName);
+				List<UserValueObject> users = ue.findByCondition(uqvo);
+				if (users.size() <= 0){
+					JOptionPane.showMessageDialog(null, "帐号或密码错误");
+					return;
+				}
+				UserValueObject user = users.get(0);
+				if (!user.getPassWd().equals(passwd)) {
+					JOptionPane.showMessageDialog(null, "帐号或密码错误");
+					return;
+				}
+				mainJFrame.setUserId(user.getUuid());
+				JOptionPane.showMessageDialog(null, "登录成功");
+				reUser();
 			}
 		});
 		btnlogin.setBounds(297, 426, 93, 23);

@@ -33,8 +33,8 @@ import com.lastation.exercise.bookSrore.in.vo.InDetailQueryValueObject;
 import com.lastation.exercise.bookSrore.in.vo.InDetailValueObject;
 import com.lastation.exercise.bookSrore.in.vo.InMainQueryValueObject;
 import com.lastation.exercise.bookSrore.in.vo.InMainValueObject;
-import com.lastation.exercise.bookSrore.tool.DefaultJPanel;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
+import com.lastation.exercise.bookSrore.ui.DefaultJPanel;
 import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
 import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
 import com.lastation.exercise.bookSrore.user.vo.UserQueryValueObject;
@@ -76,7 +76,7 @@ public class InManage extends DefaultJPanel {
 		setBounds(mainJFrame.getX(), mainJFrame.getY(), 800, 600);
 		final List<InMainValueObject> inMainDateList = ib.findInAll();
 		inMainList = new JList<>();
-		inMainList.setBackground(Color.LIGHT_GRAY);
+		inMainList.setBackground(SystemColor.control);
 		inMainList.setBounds(169, 119, 380, 160);
 		inMainList.addListSelectionListener(new ListSelectionListener() {
 			@Override
@@ -89,6 +89,8 @@ public class InManage extends DefaultJPanel {
 		mListRefresh();
 		add(inMainList);
 		JButton btnAdd = new JButton("进货");
+		btnAdd.setForeground(Color.BLACK);
+		btnAdd.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JDialog addUserDio = new InAddDio(nowJPanl,mainJFrame);
@@ -96,95 +98,97 @@ public class InManage extends DefaultJPanel {
 				addUserDio.setVisible(true);
 			}
 		});
-		btnAdd.setBounds(635, 492, 165, 50);
+		btnAdd.setBounds(587, 117, 165, 50);
 		add(btnAdd);
 		
 		JLabel lblId = new JLabel("进货日期:");
-		lblId.setBounds(580, 79, 72, 18);
+		lblId.setBounds(565, 279, 72, 18);
 		add(lblId);
 		
 		tfdy1 = new JTextField();
-		tfdy1.setBounds(580, 107, 41, 24);
+		tfdy1.setBounds(565, 307, 41, 24);
 		add(tfdy1);
 		tfdy1.setColumns(10);
 		
 		JLabel label = new JLabel("进货人：");
-		label.setBounds(580, 178, 72, 18);
+		label.setBounds(565, 378, 72, 18);
 		add(label);
 		
 		inDetailList = new JList<Object>();
-		inDetailList.setBackground(Color.LIGHT_GRAY);
-		inDetailList.setBounds(169, 335, 452, 207);
+		inDetailList.setBackground(SystemColor.control);
+		inDetailList.setBounds(169, 335, 352, 207);
 		add(inDetailList);
 		
 		JLabel label_1 = new JLabel("进货单");
+		label_1.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		label_1.setBounds(327, 77, 67, 23);
 		add(label_1);
 		
 		JLabel label_2 = new JLabel("进货明细");
-		label_2.setBounds(350, 299, 78, 23);
+		label_2.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+		label_2.setBounds(316, 307, 78, 23);
 		add(label_2);
 		
 		JLabel label_3 = new JLabel("年");
-		label_3.setBounds(625, 110, 30, 18);
+		label_3.setBounds(610, 310, 30, 18);
 		add(label_3);
 		
 		tfdm1 = new JTextField();
-		tfdm1.setBounds(647, 107, 30, 24);
+		tfdm1.setBounds(632, 307, 30, 24);
 		add(tfdm1);
 		tfdm1.setColumns(10);
 		
 		tfdd1 = new JTextField();
-		tfdd1.setBounds(711, 107, 30, 24);
+		tfdd1.setBounds(696, 307, 30, 24);
 		add(tfdd1);
 		tfdd1.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("月");
-		lblNewLabel.setBounds(685, 110, 30, 18);
+		lblNewLabel.setBounds(670, 310, 30, 18);
 		add(lblNewLabel);
 		
 		tfdd2 = new JTextField();
 		tfdd2.setColumns(10);
-		tfdd2.setBounds(737, 144, 30, 24);
+		tfdd2.setBounds(722, 344, 30, 24);
 		add(tfdd2);
 		
 		JLabel label_4 = new JLabel("月");
-		label_4.setBounds(711, 147, 30, 18);
+		label_4.setBounds(696, 347, 30, 18);
 		add(label_4);
 		
 		tfdm2 = new JTextField();
 		tfdm2.setColumns(10);
-		tfdm2.setBounds(673, 144, 30, 24);
+		tfdm2.setBounds(658, 344, 30, 24);
 		add(tfdm2);
 		
 		JLabel label_5 = new JLabel("年");
-		label_5.setBounds(651, 147, 30, 18);
+		label_5.setBounds(636, 347, 30, 18);
 		add(label_5);
 		
 		tfdy2 = new JTextField();
 		tfdy2.setColumns(10);
-		tfdy2.setBounds(606, 144, 41, 24);
+		tfdy2.setBounds(591, 344, 41, 24);
 		add(tfdy2);
 		
 		JLabel lblNewLabel_1 = new JLabel("日");
-		lblNewLabel_1.setBounds(748, 110, 41, 18);
+		lblNewLabel_1.setBounds(733, 310, 41, 18);
 		add(lblNewLabel_1);
 		
 		JLabel label_6 = new JLabel("日");
-		label_6.setBounds(774, 149, 41, 18);
+		label_6.setBounds(759, 349, 41, 18);
 		add(label_6);
 		
 		JLabel label_7 = new JLabel("到");
 		label_7.setFont(new Font("宋体", Font.BOLD, 15));
-		label_7.setBounds(580, 145, 29, 20);
+		label_7.setBounds(565, 345, 29, 20);
 		add(label_7);
 		
 		JLabel lblNewLabel_2 = new JLabel("书　名：");
-		lblNewLabel_2.setBounds(580, 213, 72, 18);
+		lblNewLabel_2.setBounds(565, 413, 72, 18);
 		add(lblNewLabel_2);
 		
 		final JComboBox cbbuser = new JComboBox();
-		cbbuser.setBounds(647, 175, 139, 24);
+		cbbuser.setBounds(632, 375, 139, 24);
 		cbbuser.setModel(new DefaultComboBoxModel<>(
 				new String[] {"—请选择—"}));
 		for(UserValueObject user:InUser){
@@ -193,7 +197,7 @@ public class InManage extends DefaultJPanel {
 		add(cbbuser);
 		
 		final JComboBox cbbbook = new JComboBox();
-		cbbbook.setBounds(647, 209, 139, 24);
+		cbbbook.setBounds(632, 409, 139, 24);
 		cbbbook.setModel(new DefaultComboBoxModel<>(
 				new String[] {"—请选择—"}));
 		for(BookValueObject book:BookList){
@@ -202,39 +206,39 @@ public class InManage extends DefaultJPanel {
 		add(cbbbook);
 		
 		tfdnum1 = new JTextField();
-		tfdnum1.setBounds(629, 244, 50, 24);
+		tfdnum1.setBounds(614, 444, 50, 24);
 		add(tfdnum1);
 		tfdnum1.setColumns(10);
 		
 		JLabel label_8 = new JLabel("本数：");
-		label_8.setBounds(580, 247, 72, 18);
+		label_8.setBounds(565, 447, 72, 18);
 		add(label_8);
 		
 		tfdnum2 = new JTextField();
 		tfdnum2.setColumns(10);
-		tfdnum2.setBounds(717, 244, 50, 24);
+		tfdnum2.setBounds(702, 444, 50, 24);
 		add(tfdnum2);
 		
 		JLabel lblNewLabel_3 = new JLabel("——");
-		lblNewLabel_3.setBounds(685, 248, 36, 18);
+		lblNewLabel_3.setBounds(670, 448, 36, 18);
 		add(lblNewLabel_3);
 		
 		JLabel label_9 = new JLabel("总价：");
-		label_9.setBounds(580, 281, 50, 18);
+		label_9.setBounds(565, 481, 50, 18);
 		add(label_9);
 		
 		tfdmoney1 = new JTextField();
 		tfdmoney1.setColumns(10);
-		tfdmoney1.setBounds(629, 275, 50, 24);
+		tfdmoney1.setBounds(614, 475, 50, 24);
 		add(tfdmoney1);
 		
 		JLabel label_10 = new JLabel("——");
-		label_10.setBounds(685, 279, 36, 18);
+		label_10.setBounds(670, 479, 36, 18);
 		add(label_10);
 		
 		tfdmoney2 = new JTextField();
 		tfdmoney2.setColumns(10);
-		tfdmoney2.setBounds(717, 275, 50, 24);
+		tfdmoney2.setBounds(702, 475, 50, 24);
 		add(tfdmoney2);
 		
 		JButton btnQuery = new JButton("查找记录");
@@ -349,7 +353,7 @@ public class InManage extends DefaultJPanel {
 				QueryDio(result,mainJFrame);
 			}
 		});
-		btnQuery.setBounds(696, 307, 93, 34);
+		btnQuery.setBounds(681, 507, 93, 34);
 		add(btnQuery);
 		
 	}

@@ -50,4 +50,5 @@ public class BookStroeMain extends JFrame {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	
 }

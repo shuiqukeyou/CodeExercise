@@ -1,4 +1,4 @@
-package com.lastation.exercise.bookSrore.tool;
+package com.lastation.exercise.bookSrore.ui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,13 +14,13 @@ import javax.swing.JPanel;
 import com.lastation.exercise.bookSrore.book.ui.BookManage;
 import com.lastation.exercise.bookSrore.common.UserEnum;
 import com.lastation.exercise.bookSrore.in.ui.InManage;
-import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
 import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
 import com.lastation.exercise.bookSrore.user.ui.UserManage;
 import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
 
 import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
 
 public class DefaultJPanel extends JPanel {
 	protected JButton btnBookManage;
@@ -28,11 +28,14 @@ public class DefaultJPanel extends JPanel {
 	protected JButton btnOutManage;
 	protected JButton btnUserManage;
 	private UserEbi ue = UserBusinessFactory.getUserBusinessImpl();
+	private BookStroeMain mainJFrame;
+	private JLabel libuser;
 
 	/**
 	 * Create the panel.
 	 */
 	public DefaultJPanel(final BookStroeMain mainJFrame, String title) {
+		this.mainJFrame = mainJFrame;
 		setBackground(Color.WHITE);
 		setLayout(null);
 		setSize(800, 600);
@@ -45,6 +48,7 @@ public class DefaultJPanel extends JPanel {
 		jPanel.setLayout(null);
 		
 		btnBookManage = new JButton("图书管理");
+		btnBookManage.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		btnBookManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserValueObject user = ue.findUser(mainJFrame.getUserId());
@@ -62,10 +66,11 @@ public class DefaultJPanel extends JPanel {
 				mainJFrame.validate();
 			}
 		});
-		btnBookManage.setBounds(27, 77, 93, 23);
+		btnBookManage.setBounds(25, 125, 100, 35);
 		jPanel.add(btnBookManage);
 		
 		btnInManage = new JButton("进货管理");
+		btnInManage.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		btnInManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserValueObject user = ue.findUser(mainJFrame.getUserId());
@@ -83,10 +88,11 @@ public class DefaultJPanel extends JPanel {
 				mainJFrame.validate();
 			}
 		});
-		btnInManage.setBounds(27, 144, 93, 23);
+		btnInManage.setBounds(25, 180, 100, 35);
 		jPanel.add(btnInManage);
 		
 		btnOutManage = new JButton("出售管理");
+		btnOutManage.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		btnOutManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserValueObject user = ue.findUser(mainJFrame.getUserId());
@@ -102,10 +108,11 @@ public class DefaultJPanel extends JPanel {
 				// TODO 出售管理待写
 			}
 		});
-		btnOutManage.setBounds(27, 200, 93, 23);
+		btnOutManage.setBounds(25, 238, 100, 35);
 		jPanel.add(btnOutManage);
 		
 		btnUserManage = new JButton("用户管理");
+		btnUserManage.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		btnUserManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserValueObject user = ue.findUser(mainJFrame.getUserId());
@@ -123,8 +130,34 @@ public class DefaultJPanel extends JPanel {
 				mainJFrame.validate();
 			}
 		});
-		btnUserManage.setBounds(27, 256, 93, 23);
+		btnUserManage.setBounds(25, 291, 100, 35);
 		jPanel.add(btnUserManage);
+		
+		JButton btnLogOff = new JButton("注销");
+		btnLogOff.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainJFrame.setUserId(0);
+				JPanel panel = new MainJPanel(mainJFrame);
+				mainJFrame.setContentPane(panel);
+				mainJFrame.validate();
+			}
+		});
+		btnLogOff.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+		btnLogOff.setBounds(25, 345, 100, 35);
+		jPanel.add(btnLogOff);
+		
+		JLabel lblNewLabel_1 = new JLabel("当前用户：");
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+		lblNewLabel_1.setBounds(10, 28, 100, 28);
+		jPanel.add(lblNewLabel_1);
+		
+		this.libuser = new JLabel("TEST");
+		reUser();
+		libuser.setHorizontalAlignment(SwingConstants.CENTER);
+		libuser.setBounds(25, 69, 85, 26);
+		
+		jPanel.add(libuser);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
@@ -136,5 +169,14 @@ public class DefaultJPanel extends JPanel {
 		lblNewLabel.setFont(new Font("微软雅黑", Font.BOLD, 24));
 		panel.add(lblNewLabel);
 		
+	}
+	
+	protected void reUser(){
+		UserValueObject user = ue.findUser(mainJFrame.getUserId());
+		if (user == null) {
+			libuser.setText("无");
+		} else {
+			libuser.setText(user.getUserName() + " " + user.getType().getName());
+		}
 	}
 }
