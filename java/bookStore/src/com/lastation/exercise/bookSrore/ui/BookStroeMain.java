@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
+import com.lastation.exercise.bookSrore.login.ui.MainJPanel;
+
 public class BookStroeMain extends JFrame {
 	public static JPanel nowJPanel = null;
 	private int userId;
@@ -25,6 +27,7 @@ public class BookStroeMain extends JFrame {
 					frame.setVisible(true);
 					nowJPanel = new MainJPanel(frame);
 					frame.setContentPane(nowJPanel);
+					frame.setTitle("书店管理");
 					frame.validate();
 				} catch (Exception e) {
 					e.printStackTrace();

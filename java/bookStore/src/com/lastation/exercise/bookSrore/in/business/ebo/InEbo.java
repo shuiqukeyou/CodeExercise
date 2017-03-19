@@ -1,6 +1,9 @@
 package com.lastation.exercise.bookSrore.in.business.ebo;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.lastation.exercise.bookSrore.common.uuid.dao.dao.UuidDAO;
 import com.lastation.exercise.bookSrore.common.uuid.dao.factory.UuidDAOFactory;
@@ -64,6 +67,18 @@ public class InEbo implements InEbi {
 	@Override
 	public InMainValueObject findMInByInUuid(int InUuid) {
 		return imd.findInMain(InUuid);
+	}
+
+	@Override
+	public Map<InMainValueObject, List<InDetailValueObject>> findAll() {
+		Map<InMainValueObject, List<InDetailValueObject>> result = new LinkedHashMap<>();
+		List<InMainValueObject> mlist  = imd.findInMainAll();
+		
+		for(InMainValueObject imvo: mlist) {
+			List<InDetailValueObject> dlist = findDInByInUuid(imvo.getUuid());
+			result.put(imvo, dlist);
+		}
+		return result;
 	}
 
 	

@@ -98,11 +98,16 @@ public class InAddDio extends JDialog {
 					JOptionPane.showMessageDialog(null, "请输入进货数量");
 					return;
 				}
-				int sum = 0;
+				Integer sum = 0;
 				try {
 					sum = Integer.valueOf(sumStr);
 				}catch (NumberFormatException er) {
 					JOptionPane.showMessageDialog(null, "请输入正确的进货数量");
+					return;
+				}
+				if (sum <= 0) {
+					JOptionPane.showMessageDialog(null, "请输入正确的进货数量");
+					return;
 				}
 				BookValueObject book = bookList.get(index-1); // 获取选择的图书
 				int bookid = book.getUuid();
@@ -112,7 +117,7 @@ public class InAddDio extends JDialog {
 				idvo.setNum(sum); // 设置总本数
 				idvo.setSumMoney(sum*bookMoney); // 设置总价
 				inlist.add(idvo); // 送入详情队列
-				String listStr = "书名：" + book.getBookName() + "  图书号："  + book.getBookNo()  +  " 进价：" + bookMoney + "  数量： " + sum;
+				String listStr = "书名：《" + book.getBookName() + "》  图书号："  + book.getBookNo()  +  " 进价：" + bookMoney + "  数量： " + sum;
 				DetailList.add(listStr);
 				DioList.setListData(DetailList.toArray());
 			}
@@ -137,11 +142,17 @@ public class InAddDio extends JDialog {
 				JButton okButton = new JButton("确认");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						ivo.setInDate(new Date().getTime()); // 设置进货人
+						if (inlist.size() <= 0) {
+							JOptionPane.showMessageDialog(null, "没有添加任何书籍");
+							return;
+						}
+						ivo.setInDate(new Date().getTime()); // 设置进货时间
 						ivo.setInUserUuid(user.getUuid()); // 设置进货人UUID
+						ivo.setInUserName(user.getUserName());
 						boolean boo = ie.create(ivo, inlist);
 						if (boo) {
 							JOptionPane.showMessageDialog(null, "添加进货成功");
+							nowJPanl.mListRefresh();
 							dispose();
 						}else {
 							JOptionPane.showMessageDialog(null, "添加进货失败");

@@ -1,4 +1,4 @@
-package com.lastation.exercise.bookSrore.ui;
+package com.lastation.exercise.bookSrore.login.ui;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -6,6 +6,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.lastation.exercise.bookSrore.common.UserEnum;
+import com.lastation.exercise.bookSrore.ui.BookStroeMain;
+import com.lastation.exercise.bookSrore.ui.DefaultJPanel;
 import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
 import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
 import com.lastation.exercise.bookSrore.user.vo.UserQueryValueObject;
@@ -19,6 +21,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class MainJPanel extends DefaultJPanel {
@@ -56,6 +59,7 @@ public class MainJPanel extends DefaultJPanel {
 		add(pwd);
 		
 		JButton btnlogin = new JButton("登录");
+		btnlogin.setFont(new Font("微软雅黑", Font.PLAIN, 24));
 		btnlogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String userName = tfdUserName.getText();
@@ -74,10 +78,12 @@ public class MainJPanel extends DefaultJPanel {
 				}
 				mainJFrame.setUserId(user.getUuid());
 				JOptionPane.showMessageDialog(null, "登录成功");
-				reUser();
+				reUser(); //
 			}
 		});
-		btnlogin.setBounds(297, 426, 93, 23);
+		btnlogin.setBounds(246, 399, 130, 50);
+		btnlogin.setMnemonic(KeyEvent.VK_ENTER); // 为确认键绑定回车键
 		add(btnlogin);
+		
 	}
 }

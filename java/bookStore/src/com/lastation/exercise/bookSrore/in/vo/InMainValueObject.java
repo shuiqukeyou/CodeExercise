@@ -2,6 +2,8 @@ package com.lastation.exercise.bookSrore.in.vo;
 
 import java.io.Serializable;
 
+import com.lastation.exercise.bookSrore.tool.DateUitl;
+
 public class InMainValueObject implements Serializable{
 	/**
 	 * 
@@ -10,7 +12,14 @@ public class InMainValueObject implements Serializable{
 	private int uuid;
 	private long inDate; // 进货日期
 	private int inUserUuid;// 进货人
+	private String inUserName;
 	
+	public String getInUserName() {
+		return inUserName;
+	}
+	public void setInUserName(String inUserName) {
+		this.inUserName = inUserName;
+	}
 	public void update(InMainValueObject imvo) {
 		this.inDate = imvo.inDate;
 		this.inUserUuid = imvo.inUserUuid;
@@ -52,6 +61,10 @@ public class InMainValueObject implements Serializable{
 		if (uuid != other.uuid)
 			return false;
 		return true;
+	}
+	@Override
+	public String toString() {
+		return "进货时间：" + DateUitl.long2String(inDate) + ", 进货人：" + inUserName;
 	}
 	
 }

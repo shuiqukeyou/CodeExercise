@@ -14,12 +14,14 @@ import javax.swing.JPanel;
 import com.lastation.exercise.bookSrore.book.ui.BookManage;
 import com.lastation.exercise.bookSrore.common.UserEnum;
 import com.lastation.exercise.bookSrore.in.ui.InManage;
+import com.lastation.exercise.bookSrore.login.ui.MainJPanel;
 import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
 import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
 import com.lastation.exercise.bookSrore.user.ui.UserManage;
 import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
 
 import java.awt.FlowLayout;
+
 import javax.swing.SwingConstants;
 
 public class DefaultJPanel extends JPanel {
@@ -153,11 +155,13 @@ public class DefaultJPanel extends JPanel {
 		jPanel.add(lblNewLabel_1);
 		
 		this.libuser = new JLabel("TEST");
+//		JLabel libuser = new JLabel("TEST");
 		reUser();
 		libuser.setHorizontalAlignment(SwingConstants.CENTER);
 		libuser.setBounds(25, 69, 85, 26);
 		
 		jPanel.add(libuser);
+	
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);

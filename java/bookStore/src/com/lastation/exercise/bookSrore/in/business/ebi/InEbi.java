@@ -1,6 +1,7 @@
 package com.lastation.exercise.bookSrore.in.business.ebi;
 
 import java.util.List;
+import java.util.Map;
 
 import com.lastation.exercise.bookSrore.in.vo.InDetailQueryValueObject;
 import com.lastation.exercise.bookSrore.in.vo.InDetailValueObject;
@@ -16,4 +17,5 @@ public interface InEbi {
 	public List<InMainValueObject> findInMByQuery(InMainQueryValueObject idqvo);
 	public List<InDetailValueObject> findDInByInUuid(int InUuid);
 	public InMainValueObject findMInByInUuid(int InUuid);
+	Map<InMainValueObject, List<InDetailValueObject>> findAll();
 }

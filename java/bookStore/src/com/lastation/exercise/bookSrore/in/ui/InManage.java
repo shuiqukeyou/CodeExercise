@@ -1,19 +1,21 @@
 package com.lastation.exercise.bookSrore.in.ui;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import javax.print.attribute.HashAttributeSet;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,24 +30,16 @@ import com.lastation.exercise.bookSrore.book.business.factory.BookBusFactory;
 import com.lastation.exercise.bookSrore.book.vo.BookValueObject;
 import com.lastation.exercise.bookSrore.in.business.ebi.InEbi;
 import com.lastation.exercise.bookSrore.in.business.factory.InEbiFactory;
-import com.lastation.exercise.bookSrore.in.dao.dao.InDetailDAO;
 import com.lastation.exercise.bookSrore.in.vo.InDetailQueryValueObject;
 import com.lastation.exercise.bookSrore.in.vo.InDetailValueObject;
 import com.lastation.exercise.bookSrore.in.vo.InMainQueryValueObject;
 import com.lastation.exercise.bookSrore.in.vo.InMainValueObject;
+import com.lastation.exercise.bookSrore.tool.DateUitl;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 import com.lastation.exercise.bookSrore.ui.DefaultJPanel;
 import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
 import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
-import com.lastation.exercise.bookSrore.user.vo.UserQueryValueObject;
 import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
-
-import java.awt.Color;
-import java.awt.SystemColor;
-
-import javax.swing.JComboBox;
-
-import java.awt.Font;
 
 public class InManage extends DefaultJPanel {
 	private InEbi ib = InEbiFactory.getEbi();
@@ -63,29 +57,29 @@ public class InManage extends DefaultJPanel {
 	private JTextField tfdnum2;
 	private JTextField tfdmoney1;
 	private JTextField tfdmoney2;
-	private List<InDetailValueObject> inDetailDataList;
-	private List<InMainValueObject> inMainDateList = ib.findInAll();
+	private Map<InMainValueObject, List<InDetailValueObject>> inData;
+	private Set<InMainValueObject> inMainDateList;
+	private List<UserValueObject> InUser;
 	private List<BookValueObject> BookList = be.findAll();
-	private List<UserValueObject> InUser = getInUser(inMainDateList);
 	
 	/**
 	 * Create the panel.
 	 */
 	public InManage(final BookStroeMain mainJFrame) {
 		super(mainJFrame, "进货管理");
+		inData = ib.findAll();
+		ListRefresh();
 		setBounds(mainJFrame.getX(), mainJFrame.getY(), 800, 600);
-		final List<InMainValueObject> inMainDateList = ib.findInAll();
 		inMainList = new JList<>();
 		inMainList.setBackground(SystemColor.control);
 		inMainList.setBounds(169, 119, 380, 160);
 		inMainList.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				Integer inUuid = inMainDateList.get(inMainList.getSelectedIndex()).getUuid();
+				Integer inUuid = ((InMainValueObject)inMainList.getSelectedValue()).getUuid();
 				dListRefresh(inUuid);
 			}
 		});
-		final InManage nowJPanl =this;
 		mListRefresh();
 		add(inMainList);
 		JButton btnAdd = new JButton("进货");
@@ -93,7 +87,7 @@ public class InManage extends DefaultJPanel {
 		btnAdd.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JDialog addUserDio = new InAddDio(nowJPanl,mainJFrame);
+				JDialog addUserDio = new InAddDio(InManage.this,mainJFrame);
 				addUserDio.setModal(true);
 				addUserDio.setVisible(true);
 			}
@@ -245,18 +239,31 @@ public class InManage extends DefaultJPanel {
 		btnQuery.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				List<InDetailValueObject> result = new ArrayList<>();
-				String y1s = tfdy1.getText();
-				Integer y1 = 0;
-				String y2s = tfdy2.getText();
-				Integer y2 = Integer.MAX_VALUE;
-				String m1s = tfdm1.getText();
-				Integer m1 = 1;
-				String m2s = tfdm2.getText();
-				Integer m2 = 12;
-				String d1s = tfdd1.getText();
-				Integer d1 = 1;
-				String d2s = tfdd2.getText();
-				Integer d2 = 31;
+				String y1 = "0";
+				if (tfdy1.getText().trim().length() > 0) {
+					y1 = tfdy1.getText();
+				}
+				String y2 = ""+Integer.MAX_VALUE;
+				System.out.println(tfdy2.getText().trim().length());
+				if (tfdy2.getText().trim().length() > 0) {
+					y2 = tfdy2.getText();
+				}
+				String m1 = "1";
+				if (tfdm1.getText().trim().length() > 0) {
+					m1 = tfdm1.getText();
+				}
+				String m2 = "12";
+				if (tfdm2.getText().trim().length() > 0) {
+					m2 = tfdm2.getText();
+				}
+				String d1 = "1";
+				if (tfdd1.getText().trim().length() > 0) {
+					d1 = tfdd1.getText();
+				}
+				String d2 = "31";
+				if (tfdd2.getText().trim().length() > 0) {
+					d2 = tfdd2.getText();
+				}
 				UserValueObject user = null;
 				Integer bookUuid = 0;
 				if (cbbuser.getSelectedIndex() > 0){
@@ -275,24 +282,7 @@ public class InManage extends DefaultJPanel {
 				Double money2 = Double.MAX_VALUE;
 				
 				try {
-					if (y1s.trim().length() > 0) {
-						y1 = Integer.valueOf(y1s);
-					}
-					if (y2s.trim().length() > 0) {
-						y2 = Integer.valueOf(y2s);
-					}
-					if (m1s.trim().length() > 0) {
-						m1 = Integer.valueOf(m1s);
-					}
-					if (m2s.trim().length() > 0) {
-						m2 = Integer.valueOf(m2s);
-					}
-					if (d1s.trim().length() > 0) {
-						d1 = Integer.valueOf(d1s);
-					}
-					if (d2s.trim().length() > 0) {
-						d2 = Integer.valueOf(d2s);
-					}
+					
 					if (num1s.trim().length() > 0) {
 						num1 = Integer.valueOf(num1s);
 					}
@@ -309,19 +299,16 @@ public class InManage extends DefaultJPanel {
 					JOptionPane.showMessageDialog(null, "搜索条件格式错误");
 					return;
 				}
-				Calendar date1 = Calendar.getInstance(); 
-				Calendar date2 = Calendar.getInstance(); 
-				try {
-					date1.set(y1, m1, d1);
-					date2.set(y2, m2, d2);
-				} catch (ArrayIndexOutOfBoundsException er) {
-					JOptionPane.showMessageDialog(null, "日期格式错误");
-					return;
-				}
+				
 				// 初始化主表查询
 				InMainQueryValueObject imqvo = new InMainQueryValueObject();
-				imqvo.setInDateMax(date2.getTimeInMillis());
-				imqvo.setInDateMin(date1.getTimeInMillis());
+				try {
+					imqvo.setInDateMax(DateUitl.string2Long(y1+","+m1+","+d1+","+"0,0,0"));
+					imqvo.setInDateMin(DateUitl.string2Long(y2+","+m2+","+d2+","+"23,59,59"));
+				} catch (ParseException e1) {
+					JOptionPane.showMessageDialog(null, "请输入正确的搜索日期条件");
+					return;
+				}
 				if (user != null) {
 					imqvo.setInUserUuid(user.getUuid());
 				} else {
@@ -359,40 +346,25 @@ public class InManage extends DefaultJPanel {
 	}
 	
 	public void mListRefresh(){
-		inMainDateList = ib.findInAll();
-		List<String> inMainStrList = new ArrayList<>();
-		for (InMainValueObject imvo:inMainDateList) {
-			UserValueObject user = ue.findUser(imvo.getInUserUuid()); // 根据ID获取到用户
-			Calendar date = Calendar.getInstance();
-			date.setTimeInMillis(imvo.getInDate());
-			inMainStrList.add("进货时间；" + printDate(date) + " 进货人：" + user.getUserName());
-
-		}
-		inMainList.setListData(inMainStrList.toArray());
+		ListRefresh();
+		inMainList.setListData(inMainDateList.toArray());
 	}
-	
+	private void ListRefresh(){
+		inMainDateList = inData.keySet();
+		InUser = getInUser(inMainDateList);
+	}
 	public void dListRefresh(int inUuid){
-		inDetailDataList = ib.findDInByInUuid(inUuid);
+		List<InDetailValueObject> inDetailDataList = ib.findDInByInUuid(inUuid);
 		List<String> inDetailStrList = new ArrayList<>();
 		for (InDetailValueObject idvo:inDetailDataList) {
 			BookValueObject book = be.findBook(idvo.getBookUuid());// 获取图书对象
 			inDetailStrList.add("书名；" + book.getBookName() + " 数量：" + idvo.getNum() + " 总价：" + idvo.getSumMoney());
-
 		}
 		inDetailList.setListData(inDetailStrList.toArray());
 	}
 	
-	private String printDate(Calendar date){
-		String hour = String.format("%02d", date.get(Calendar.HOUR_OF_DAY)); 
-		String min = String.format("%02d", date.get(Calendar.MINUTE)); 
-		String sec = String.format("%02d", date.get(Calendar.SECOND)); 
-		
-		return date.get(Calendar.YEAR)+ "年" + date.get(Calendar.MONTH) + "月" + 
-				date.get(Calendar.DAY_OF_MONTH) + "日" + hour +
-				":" + min + ":" + sec;
-	}
-	
-	private List<UserValueObject> getInUser(List<InMainValueObject> mainList){
+	//刷新查询部分的进货人列表，遍历InMain，只有至少进货一次的用户才会被添加进来
+	private List<UserValueObject> getInUser(Set<InMainValueObject> mainList){
 		Set<UserValueObject> inUserId = new HashSet<>();
 		List<UserValueObject> result = new ArrayList<>();
 		for (InMainValueObject imvo:mainList) {
