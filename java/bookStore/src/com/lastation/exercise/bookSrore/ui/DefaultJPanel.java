@@ -15,6 +15,7 @@ import com.lastation.exercise.bookSrore.book.ui.BookManage;
 import com.lastation.exercise.bookSrore.common.UserEnum;
 import com.lastation.exercise.bookSrore.in.ui.InManage;
 import com.lastation.exercise.bookSrore.login.ui.MainJPanel;
+import com.lastation.exercise.bookSrore.stock.ui.StockJPanel;
 import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
 import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
 import com.lastation.exercise.bookSrore.user.ui.UserManage;
@@ -107,7 +108,8 @@ public class DefaultJPanel extends JPanel {
 					JOptionPane.showMessageDialog(null, "没有权限");
 					return;
 				}
-				// TODO 出售管理待写
+				JOptionPane.showMessageDialog(null, "可进货模块几乎一样的代码所以懒的写");
+				
 			}
 		});
 		btnOutManage.setBounds(25, 238, 100, 35);
@@ -132,7 +134,7 @@ public class DefaultJPanel extends JPanel {
 				mainJFrame.validate();
 			}
 		});
-		btnUserManage.setBounds(25, 291, 100, 35);
+		btnUserManage.setBounds(25, 353, 100, 35);
 		jPanel.add(btnUserManage);
 		
 		JButton btnLogOff = new JButton("注销");
@@ -145,7 +147,7 @@ public class DefaultJPanel extends JPanel {
 			}
 		});
 		btnLogOff.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-		btnLogOff.setBounds(25, 345, 100, 35);
+		btnLogOff.setBounds(25, 412, 100, 35);
 		jPanel.add(btnLogOff);
 		
 		JLabel lblNewLabel_1 = new JLabel("当前用户：");
@@ -155,12 +157,33 @@ public class DefaultJPanel extends JPanel {
 		jPanel.add(lblNewLabel_1);
 		
 		this.libuser = new JLabel("TEST");
-//		JLabel libuser = new JLabel("TEST");
 		reUser();
 		libuser.setHorizontalAlignment(SwingConstants.CENTER);
 		libuser.setBounds(25, 69, 85, 26);
 		
 		jPanel.add(libuser);
+		
+		JButton btnNewButton = new JButton("库存管理");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserValueObject user = ue.findUser(mainJFrame.getUserId());
+				if (user == null) {
+					JOptionPane.showMessageDialog(null, "请先登录");
+					return;
+				}
+				UserEnum userType = user.getType();
+				if ((!userType.equals(UserEnum.ADMIN)) && (!userType.equals(UserEnum.STOCK))) {
+					JOptionPane.showMessageDialog(null, "没有权限");
+					return;
+				}
+				JPanel panel = new StockJPanel(mainJFrame);
+				mainJFrame.setContentPane(panel);
+				mainJFrame.validate();
+			}
+		});
+		btnNewButton.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+		btnNewButton.setBounds(25, 294, 100, 35);
+		jPanel.add(btnNewButton);
 	
 		
 		JPanel panel = new JPanel();
