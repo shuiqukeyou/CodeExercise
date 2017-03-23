@@ -151,8 +151,8 @@ public class InAddDio extends JDialog {
 						ivo.setInUserName(user.getUserName());
 						boolean boo = ie.create(ivo, inlist);
 						if (boo) {
-							JOptionPane.showMessageDialog(null, "添加进货成功");
 							nowJPanl.mListRefresh();
+							JOptionPane.showMessageDialog(null, "添加进货成功");
 							dispose();
 						}else {
 							JOptionPane.showMessageDialog(null, "添加进货失败");
