@@ -67,7 +67,6 @@ public class InManage extends DefaultJPanel {
 	 */
 	public InManage(final BookStroeMain mainJFrame) {
 		super(mainJFrame, "进货管理");
-		inData = ib.findAll();
 		ListRefresh();
 		setBounds(mainJFrame.getX(), mainJFrame.getY(), 800, 600);
 		inMainList = new JList<>();
@@ -350,6 +349,7 @@ public class InManage extends DefaultJPanel {
 		inMainList.setListData(inMainDateList.toArray());
 	}
 	private void ListRefresh(){
+		inData = ib.findAll();
 		inMainDateList = inData.keySet();
 		InUser = getInUser(inMainDateList);
 	}
