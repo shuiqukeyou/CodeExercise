@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import com.lastation.exercise.bookSrore.book.business.ebi.BookEbi;
-import com.lastation.exercise.bookSrore.book.business.factory.BookBusFactory;
+import com.lastation.exercise.bookSrore.book.business.factory.BookEbiFactory;
 import com.lastation.exercise.bookSrore.book.vo.BookValueObject;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 
@@ -27,7 +27,7 @@ public class BookDeleteDio extends JDialog {
 	private JTextField tfdInPrice;
 	private JTextField tfdNo;
 	private JTextField tfdSalePrice;
-	private BookEbi bebi = BookBusFactory.getBookEbi();
+	private BookEbi bebi = BookEbiFactory.getBookEbi();
 
 
 	public BookDeleteDio(final BookManage nowJPanl, BookStroeMain mainJFrame,

@@ -20,7 +20,7 @@ import javax.swing.border.EmptyBorder;
 import com.lastation.exercise.bookSrore.common.UserEnum;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
-import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
+import com.lastation.exercise.bookSrore.user.business.factory.UserEbiFactory;
 import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
 
 public class AddUserDio extends JDialog {
@@ -29,7 +29,7 @@ public class AddUserDio extends JDialog {
 	private JTextField tfdUserName;
 	private JPasswordField pfdpwd2;
 	private JPasswordField pfdpwd1;
-	private UserEbi uedi = UserBusinessFactory.getUserBusinessImpl();
+	private UserEbi uedi = UserEbiFactory.getUserEbi();
 
 	/**
 	 * Create the dialog.

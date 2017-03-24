@@ -6,14 +6,14 @@ import org.junit.Test;
 
 import com.lastation.exercise.bookSrore.common.UserEnum;
 import com.lastation.exercise.bookSrore.user.business.ebo.UserEbo;
-import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
+import com.lastation.exercise.bookSrore.user.business.factory.UserEbiFactory;
 import com.lastation.exercise.bookSrore.user.dao.dao.UserDAO;
 import com.lastation.exercise.bookSrore.user.dao.factory.UserDAOFactory;
 import com.lastation.exercise.bookSrore.user.vo.UserQueryValueObject;
 import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
 
 public class UserTest {
-	UserEbo uEbo = UserBusinessFactory.getUserBusinessImpl();
+	UserEbo uEbo = UserEbiFactory.getUserEbi();
 	// 普通添加测试
 	@Test
 	public void testDaoCreate(){

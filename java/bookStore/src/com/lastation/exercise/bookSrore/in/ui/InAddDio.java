@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import com.lastation.exercise.bookSrore.book.business.ebi.BookEbi;
-import com.lastation.exercise.bookSrore.book.business.factory.BookBusFactory;
+import com.lastation.exercise.bookSrore.book.business.factory.BookEbiFactory;
 import com.lastation.exercise.bookSrore.book.vo.BookValueObject;
 import com.lastation.exercise.bookSrore.in.business.ebi.InEbi;
 import com.lastation.exercise.bookSrore.in.business.factory.InEbiFactory;
@@ -28,20 +28,20 @@ import com.lastation.exercise.bookSrore.in.vo.InDetailValueObject;
 import com.lastation.exercise.bookSrore.in.vo.InMainValueObject;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
-import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
+import com.lastation.exercise.bookSrore.user.business.factory.UserEbiFactory;
 import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
 
 public class InAddDio extends JDialog {
 	
 	private final JPanel contentPanel = new JPanel(); 
 	private JTextField tfdsum;
-	private InEbi ie = InEbiFactory.getEbi(); // 进货逻辑层
-	private BookEbi be = BookBusFactory.getBookEbi(); //图书逻辑层
+	private InEbi ie = InEbiFactory.getInEbi(); // 进货逻辑层
+	private BookEbi be = BookEbiFactory.getBookEbi(); //图书逻辑层
 	private List<InDetailValueObject> inlist = new ArrayList<InDetailValueObject>();//进货详情列表
 	private InMainValueObject ivo = new InMainValueObject(); //初始化进货总表
 	private JTextField tfdInUser; //用户名
 	private UserValueObject user; // 用户对象
-	private UserEbi ue =UserBusinessFactory.getUserBusinessImpl(); //用户逻辑层
+	private UserEbi ue =UserEbiFactory.getUserEbi(); //用户逻辑层
 	private List<String> DetailList = new ArrayList<>(); // 显示在列表中的字符串数组
 
 	public InAddDio(final InManage nowJPanl, BookStroeMain mainJFrame) {

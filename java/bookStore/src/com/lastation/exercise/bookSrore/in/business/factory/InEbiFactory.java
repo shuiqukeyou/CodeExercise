@@ -7,7 +7,7 @@ public class InEbiFactory {
 	private InEbiFactory(){
 	}
 	
-	public static InEbi getEbi() {
+	public static InEbi getInEbi() {
 		return new InEbo();
 	}
 }

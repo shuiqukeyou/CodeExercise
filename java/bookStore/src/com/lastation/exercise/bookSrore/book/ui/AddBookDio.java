@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import com.lastation.exercise.bookSrore.book.business.ebi.BookEbi;
-import com.lastation.exercise.bookSrore.book.business.factory.BookBusFactory;
+import com.lastation.exercise.bookSrore.book.business.factory.BookEbiFactory;
 import com.lastation.exercise.bookSrore.book.vo.BookValueObject;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 
@@ -23,7 +23,7 @@ public class AddBookDio extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfdBookName;
-	private BookEbi bedi = BookBusFactory.getBookEbi();
+	private BookEbi bedi = BookEbiFactory.getBookEbi();
 	private JTextField tfdBookNo;
 	private JTextField tfdInPrice;
 	private JTextField tfdSalePrice;

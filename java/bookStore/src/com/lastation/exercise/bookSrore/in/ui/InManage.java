@@ -26,7 +26,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import com.lastation.exercise.bookSrore.book.business.ebi.BookEbi;
-import com.lastation.exercise.bookSrore.book.business.factory.BookBusFactory;
+import com.lastation.exercise.bookSrore.book.business.factory.BookEbiFactory;
 import com.lastation.exercise.bookSrore.book.vo.BookValueObject;
 import com.lastation.exercise.bookSrore.in.business.ebi.InEbi;
 import com.lastation.exercise.bookSrore.in.business.factory.InEbiFactory;
@@ -38,16 +38,16 @@ import com.lastation.exercise.bookSrore.tool.DateUitl;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 import com.lastation.exercise.bookSrore.ui.DefaultJPanel;
 import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
-import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
+import com.lastation.exercise.bookSrore.user.business.factory.UserEbiFactory;
 import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
 
 public class InManage extends DefaultJPanel {
-	private InEbi ib = InEbiFactory.getEbi();
+	private InEbi ib = InEbiFactory.getInEbi();
 	private JTextField tfdy1;
 	private JList inMainList;
 	private JList inDetailList;
-	private UserEbi ue = UserBusinessFactory.getUserBusinessImpl();
-	private BookEbi be = BookBusFactory.getBookEbi();
+	private UserEbi ue = UserEbiFactory.getUserEbi();
+	private BookEbi be = BookEbiFactory.getBookEbi();
 	private JTextField tfdm1;
 	private JTextField tfdd1;
 	private JTextField tfdd2;
@@ -243,7 +243,6 @@ public class InManage extends DefaultJPanel {
 					y1 = tfdy1.getText();
 				}
 				String y2 = ""+Integer.MAX_VALUE;
-				System.out.println(tfdy2.getText().trim().length());
 				if (tfdy2.getText().trim().length() > 0) {
 					y2 = tfdy2.getText();
 				}

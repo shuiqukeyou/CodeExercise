@@ -17,7 +17,7 @@ import com.lastation.exercise.bookSrore.in.ui.InManage;
 import com.lastation.exercise.bookSrore.login.ui.MainJPanel;
 import com.lastation.exercise.bookSrore.stock.ui.StockJPanel;
 import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
-import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
+import com.lastation.exercise.bookSrore.user.business.factory.UserEbiFactory;
 import com.lastation.exercise.bookSrore.user.ui.UserManage;
 import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
 
@@ -30,7 +30,7 @@ public class DefaultJPanel extends JPanel {
 	protected JButton btnInManage;
 	protected JButton btnOutManage;
 	protected JButton btnUserManage;
-	private UserEbi ue = UserBusinessFactory.getUserBusinessImpl();
+	private UserEbi ue = UserEbiFactory.getUserEbi();
 	private BookStroeMain mainJFrame;
 	private JLabel libuser;
 
@@ -108,7 +108,7 @@ public class DefaultJPanel extends JPanel {
 					JOptionPane.showMessageDialog(null, "没有权限");
 					return;
 				}
-				JOptionPane.showMessageDialog(null, "可进货模块几乎一样的代码所以懒的写");
+				JOptionPane.showMessageDialog(null, "和进货模块几乎一样的代码所以并没有（懒的）写");
 				
 			}
 		});
@@ -156,8 +156,7 @@ public class DefaultJPanel extends JPanel {
 		lblNewLabel_1.setBounds(10, 28, 100, 28);
 		jPanel.add(lblNewLabel_1);
 		
-		this.libuser = new JLabel("TEST");
-		reUser();
+		this.libuser = new JLabel("无");
 		libuser.setHorizontalAlignment(SwingConstants.CENTER);
 		libuser.setBounds(25, 69, 85, 26);
 		

@@ -18,17 +18,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.lastation.exercise.bookSrore.book.business.ebi.BookEbi;
-import com.lastation.exercise.bookSrore.book.business.factory.BookBusFactory;
+import com.lastation.exercise.bookSrore.book.business.factory.BookEbiFactory;
 import com.lastation.exercise.bookSrore.book.vo.BookValueObject;
 import com.lastation.exercise.bookSrore.in.business.ebi.InEbi;
 import com.lastation.exercise.bookSrore.in.business.factory.InEbiFactory;
 import com.lastation.exercise.bookSrore.in.vo.InDetailValueObject;
+import com.lastation.exercise.bookSrore.tool.DateUitl;
 
 public class QueryDio extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private final BookEbi be = BookBusFactory.getBookEbi();
-	private final InEbi ie = InEbiFactory.getEbi();
+	private final BookEbi be = BookEbiFactory.getBookEbi();
+	private final InEbi ie = InEbiFactory.getInEbi();
 
 	public QueryDio(List<InDetailValueObject> list, JFrame mainJFrame) {
 		setTitle("查询结果");
@@ -46,9 +47,7 @@ public class QueryDio extends JDialog {
 		List<String> listStr = new ArrayList<>();
 		
 		for (InDetailValueObject idvo:list) {
-			Calendar time = Calendar.getInstance();
-			time.setTimeInMillis(ie.findMInByInUuid(idvo.getInUuid()).getInDate());
-			listStr.add("时间:"+ printDate(time) +" 书名：" + be.findBook(idvo.getBookUuid()).getBookName() + " 本数：" + idvo.getNum() + " 总价：" + idvo.getSumMoney());
+			listStr.add("时间:"+ DateUitl.long2String(ie.findMInByInUuid(idvo.getInUuid()).getInDate()) +" 书名：" + be.findBook(idvo.getBookUuid()).getBookName() + " 本数：" + idvo.getNum() + " 总价：" + idvo.getSumMoney());
 		}
 		
 		JList listData = new JList();
@@ -71,14 +70,5 @@ public class QueryDio extends JDialog {
 			}
 		}
 	}
-	
-	private String printDate(Calendar date){
-		String hour = String.format("%02d", date.get(Calendar.HOUR_OF_DAY)); 
-		String min = String.format("%02d", date.get(Calendar.MINUTE)); 
-		String sec = String.format("%02d", date.get(Calendar.SECOND)); 
-		
-		return date.get(Calendar.YEAR)+ "年" + date.get(Calendar.MONTH) + "月" + 
-				date.get(Calendar.DAY_OF_MONTH) + "日" + hour +
-				":" + min + ":" + sec;
-	}
+
 }

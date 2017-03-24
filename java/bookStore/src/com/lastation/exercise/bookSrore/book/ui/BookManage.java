@@ -12,14 +12,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import com.lastation.exercise.bookSrore.book.business.ebi.BookEbi;
-import com.lastation.exercise.bookSrore.book.business.factory.BookBusFactory;
+import com.lastation.exercise.bookSrore.book.business.factory.BookEbiFactory;
 import com.lastation.exercise.bookSrore.book.vo.BookQueryValueObject;
 import com.lastation.exercise.bookSrore.book.vo.BookValueObject;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 import com.lastation.exercise.bookSrore.ui.DefaultJPanel;
 
 public class BookManage extends DefaultJPanel {
-	private BookEbi ub = BookBusFactory.getBookEbi();
+	private BookEbi ub = BookEbiFactory.getBookEbi();
 	private JTextField tfdName;
 	private JTextField tfdNo;
 	private JList list;

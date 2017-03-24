@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
-import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
+import com.lastation.exercise.bookSrore.user.business.factory.UserEbiFactory;
 import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
 
 public class UserDeleteDio extends JDialog {
@@ -26,7 +26,7 @@ public class UserDeleteDio extends JDialog {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private UserEbi uedi = UserBusinessFactory.getUserBusinessImpl();
+	private UserEbi uedi = UserEbiFactory.getUserEbi();
 	
 	/**
 	 * Create the dialog.

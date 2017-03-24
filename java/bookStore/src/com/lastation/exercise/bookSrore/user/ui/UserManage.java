@@ -18,13 +18,13 @@ import com.lastation.exercise.bookSrore.common.UserEnum;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 import com.lastation.exercise.bookSrore.ui.DefaultJPanel;
 import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
-import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
+import com.lastation.exercise.bookSrore.user.business.factory.UserEbiFactory;
 import com.lastation.exercise.bookSrore.user.vo.UserQueryValueObject;
 import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
 
 public class UserManage extends DefaultJPanel {
 	
-	private UserEbi ub = UserBusinessFactory.getUserBusinessImpl();
+	private UserEbi ub = UserEbiFactory.getUserEbi();
 	private JTextField tfdid;
 	private JTextField tfdName;
 	private JList list;
