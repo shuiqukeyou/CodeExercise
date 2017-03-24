@@ -53,6 +53,6 @@ public class StockValueObject implements Serializable{
 			return false;
 		return true;
 	}
-
+	
 	
 }

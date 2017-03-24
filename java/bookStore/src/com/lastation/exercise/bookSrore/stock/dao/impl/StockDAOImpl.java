@@ -75,13 +75,18 @@ public class StockDAOImpl implements StockDAO {
 					continue;
 				}
 			}
-			if (lsvo.getBookUuid() > 0) {
+			if (sqov.getBookUuid() > 0) {
 				if (lsvo.getBookUuid() != sqov.getBookUuid()){
 					continue;
 				}
 			}
-			if (lsvo.getSumMun() > 0) {
-				if (lsvo.getSumMun() != sqov.getSumMun()){
+			if (sqov.getSumMun1() > 0) {
+				if (lsvo.getSumMun() < sqov.getSumMun1()){
+					continue;
+				}
+			}
+			if (sqov.getSumMun2() > 0) {
+				if (lsvo.getSumMun() > sqov.getSumMun2()){
 					continue;
 				}
 			}

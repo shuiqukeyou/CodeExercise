@@ -3,7 +3,14 @@ package com.lastation.exercise.bookSrore.stock.vo;
 public class StockQueryValueObject {
 	private int uuid;
 	private int bookUuid;
-	private int sumMun;
+	private int sumMun1;
+	private int sumMun2;
+	public int getSumMun2() {
+		return sumMun2;
+	}
+	public void setSumMun2(int sumMun2) {
+		this.sumMun2 = sumMun2;
+	}
 	public int getUuid() {
 		return uuid;
 	}
@@ -16,11 +23,11 @@ public class StockQueryValueObject {
 	public void setBookUuid(int bookUuid) {
 		this.bookUuid = bookUuid;
 	}
-	public int getSumMun() {
-		return sumMun;
+	public int getSumMun1() {
+		return sumMun1;
 	}
-	public void setSumMun(int sumMun) {
-		this.sumMun = sumMun;
+	public void setSumMun1(int sumMun) {
+		this.sumMun1 = sumMun;
 	}
 	@Override
 	public int hashCode() {
