@@ -6,10 +6,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.lastation.exercise.bookSrore.common.UserEnum;
+import com.lastation.exercise.bookSrore.login.business.ebi.LoginEbi;
+import com.lastation.exercise.bookSrore.login.business.factory.LoginEbiFactory;
 import com.lastation.exercise.bookSrore.ui.BookStroeMain;
 import com.lastation.exercise.bookSrore.ui.DefaultJPanel;
 import com.lastation.exercise.bookSrore.user.business.ebi.UserEbi;
-import com.lastation.exercise.bookSrore.user.business.factory.UserBusinessFactory;
+import com.lastation.exercise.bookSrore.user.business.factory.UserEbiFactory;
 import com.lastation.exercise.bookSrore.user.vo.UserQueryValueObject;
 import com.lastation.exercise.bookSrore.user.vo.UserValueObject;
 
@@ -23,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import java.util.Map;
 
 public class MainJPanel extends DefaultJPanel {
 	private JTextField textField;
@@ -30,7 +33,8 @@ public class MainJPanel extends DefaultJPanel {
 	private JFrame mainJFrame;
 	private JTextField tfdUserName;
 	private JPasswordField pwd;
-	private UserEbi ue = UserBusinessFactory.getUserBusinessImpl();
+	private UserEbi ue = UserEbiFactory.getUserEbi();
+	private LoginEbi le = LoginEbiFactory.getLoginEbi();
 
 	/**
 	 * Create the panel.
@@ -64,21 +68,16 @@ public class MainJPanel extends DefaultJPanel {
 			public void actionPerformed(ActionEvent e) {
 				String userName = tfdUserName.getText();
 				String passwd = String.valueOf(pwd.getPassword());
-				UserQueryValueObject uqvo = new UserQueryValueObject();
-				uqvo.setUserName(userName);
-				List<UserValueObject> users = ue.findByCondition(uqvo);
-				if (users.size() <= 0){
-					JOptionPane.showMessageDialog(null, "帐号或密码错误");
-					return;
-				}
-				UserValueObject user = users.get(0);
-				if (!user.getPassWd().equals(passwd)) {
-					JOptionPane.showMessageDialog(null, "帐号或密码错误");
+				Map<String, Object> result = le.Login(userName, passwd);
+				UserValueObject user = (UserValueObject) result.get("user");
+				if (user == null) {
+					JOptionPane.showMessageDialog(null, result.get("error"));
 					return;
 				}
 				mainJFrame.setUserId(user.getUuid());
 				JOptionPane.showMessageDialog(null, "登录成功");
-				reUser(); //
+				reUser(); 
+				mainJFrame.setContentPane(new WelcomeJPanel(mainJFrame));
 			}
 		});
 		btnlogin.setBounds(246, 399, 130, 50);
