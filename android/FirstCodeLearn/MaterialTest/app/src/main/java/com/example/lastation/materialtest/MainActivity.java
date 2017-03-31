@@ -79,9 +79,10 @@ public class MainActivity extends AppCompatActivity {
 
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
-        swipeRefresh.setOnClickListener(new SwipeRefreshLayout.OnClickListener() {
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
             @Override
-            public void onClick(View view) {
+            public void onRefresh() {
                 refreshFruits();
             }
         });
