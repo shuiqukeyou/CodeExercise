@@ -1,5 +1,5 @@
 import unittest
-from unit11 import get_formatted_name, AnonymousSurvey
+from units.unit11 import AnonymousSurvey
 
 
 # # 对get_formatted_name进行单元测试
