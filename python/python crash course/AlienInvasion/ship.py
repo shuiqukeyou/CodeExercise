@@ -35,7 +35,10 @@ class Ship(object):
         # 根据center更新rect
         self.rect.centerx = self.center
 
-
-     # 绘制飞船
+    # 绘制飞船
     def blitme(self):
         self.screen.blit(self.image, self.rect)
+
+    # 重置位置
+    def center_ship(self):
+        self.center = self.screen_rect.centerx
