@@ -5,6 +5,8 @@ from AlienInvasion.setting import Setting
 from AlienInvasion.ship import Ship
 from AlienInvasion.alien import Alien
 from AlienInvasion.game_stats import GameStats
+from AlienInvasion.button import Button
+from AlienInvasion.scoreboard import Scoreboard
 import AlienInvasion.game_functions as gf
 
 
@@ -20,6 +22,7 @@ def run_game():
     pygame.display.set_caption("外星人入侵")
     # 设置统计器对象
     stats = GameStats(ai_settings)
+    sb = Scoreboard(ai_settings, screen, stats)
 
     # 飞船对象
     ship = Ship(ai_settings, screen)
@@ -29,19 +32,22 @@ def run_game():
     aliens = Group()
     gf.create_fleet(ai_settings, screen, ship, aliens)
 
+    # 创建开始按钮
+    play_button = Button(ai_settings, screen, "Play")
+
     # 主循环
     while True:
         # 用户事件监听
-        gf.check_events(ai_settings, screen, ship, bullets)
+        gf.check_events(ai_settings, screen, stats, play_button, sb, ship, aliens, bullets)
         if stats.game_active:
             # 监听用户事件后重新绘制单位
             ship.update()
             # 更新子弹
-            gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
+            gf.update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets)
             # 更新外星人
-            gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
+            gf.update_aliens(ai_settings, screen, stats, sb, ship, aliens, bullets)
         # 更新屏幕
-        gf.update_screen(ai_settings, screen, ship, aliens, bullets)
+        gf.update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button)
 
 
 if __name__ == '__main__':
