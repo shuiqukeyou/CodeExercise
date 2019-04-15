@@ -17,7 +17,7 @@ from itertools import groupby
 
 filename = "./data/btc_close_2017.json"
 
-dates,months,weeks,weekdays,close = [],[],[],[],[]
+dates, months, weeks, weekdays, close = [], [], [], [], []
 
 with open(filename) as f:
     btc_data = json.load(f)
@@ -44,12 +44,12 @@ line_chart.add("收盘价（对数）", close_log)
 line_chart.render_to_file("收盘价折线图（对数）.svg")
 
 
-def draw_line(x_data,y_data,title,y_legend):
+def draw_line(x_data, y_data, title, y_legend):
     xy_map = []
     # 将数据合并、排序，再用groupby进行分组
-    for x, y in groupby(sorted(zip(x_data,y_data)), key=lambda _:_[0]):
-        y_list = [v for _,v in y]
-        xy_map.append([x, sum(y_list)/len(y_list)])
+    for x, y in groupby(sorted(zip(x_data, y_data)), key=lambda _: _[0]):
+        y_list = [v for _, v in y]
+        xy_map.append([x, sum(y_list) / len(y_list)])
     x_unique, y_mean = [*zip(*xy_map)]
     line_chart = pygal.Line()
     line_chart.title = title
@@ -58,17 +58,18 @@ def draw_line(x_data,y_data,title,y_legend):
     line_chart.render_to_file(title + ".svg")
     return line_chart
 
+
 idx_month = dates.index("2017-12-01")
-line_chart_month = draw_line(months[:idx_month], close[:idx_month],"收盘价月日均值","月日均值")
+line_chart_month = draw_line(months[:idx_month], close[:idx_month], "收盘价月日均值", "月日均值")
 line_chart_month
 
 idx_week = dates.index("2017-12-11")
 # 星期list
-wd = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+wd = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 # 根据日期替换对应的星期
 weekdays_int = [wd.index(w) + 1 for w in weekdays[1:idx_week]]
-line_chart_weekday = draw_line(weekdays_int, close[1:idx_week],"收盘价周日均值","周日均值")
-line_chart_weekday .x_labels=["周一","周二","周三","周四","周五","周六","周日",]
+line_chart_weekday = draw_line(weekdays_int, close[1:idx_week], "收盘价周日均值", "周日均值")
+line_chart_weekday.x_labels = ["周一", "周二", "周三", "周四", "周五", "周六", "周日", ]
 line_chart_weekday.render_to_file("收盘价星期均值" + ".svg")
 
 with open("./收盘价dashboard.html", "w", encoding="utf8") as html_file:
