@@ -16,22 +16,22 @@ for iter = 1:num_iters
     % Hint: While debugging, it can be useful to print out the values
     %       of the cost function (computeCostMulti) and gradient here.
     %
-    n = length(theta)
-    m1 = 0;
-    m2 = 0;
-    m3 = 0;
+
+    n = length(theta);
+    theta_m = zeros(n,1);
+    theta_t = zeros(n,1);
     for i = 1:m
-      h = X(i,:) * theta ;
-      m1 = m1 + (h - y(i)) * X(i,1);
-      m2 = m2 + (h - y(i)) * X(i,2);
-      m3 = m3 + (h - y(i)) * X(i,3);
+      h = X(i,:) * theta ;% 计算h
+      for j = 1:n
+        theta_m(j,1) = theta_m(j,1) + (h - y(i)) * X(i,j); % 计算代价并累加
+      endfor
     endfor
-    t1 = theta(1,1) - alpha*m1/m;
-    t2 = theta(2,1) - alpha*m2/m;
-    t3 = theta(3,1) - alpha*m3/m;
-    theta(1,1) = t1;
-    theta(2,1) = t2;
-    theta(3,1) = t3;
+    for j = 1:n
+      theta_t(j,1) = theta(j,1) - alpha*theta_m(j,1)/m;
+    endfor
+    for j = 1:n
+      theta(j,1) = theta_t(j,1);
+    endfor 
 
 
     % ============================================================

@@ -25,10 +25,14 @@ sigma = zeros(1, size(X, 2));
 %
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
+n = length(X(1,:));
+for i = 1:n
+  span_x = std(X(:,i));
+  mean_x = mean(X(:,i));
+  X_norm(:,i) = (X(:,i)-mean_x)/span_x;
+endfor
 
-span_x = std(X(:,1));
-mean_x = mean(X(:,1));
-X_norm(:,1) = (X(:,1)-mean_x)/span_x;
+
 
 
 
