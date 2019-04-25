@@ -20,9 +20,16 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+z = X * theta; % 计算参数z
 
+h = zeros(m,1); % 创建储存每个h(x)值的向量
+for i = 1:m
+  h(i) = 1/(1 + e^-(z(i,1)));
+endfor
+J = (-y' * log(h) - (1-y)' * log(1 - h));
+J = J/m
 
-
+grad = X' * (h-y) / m
 
 
 
