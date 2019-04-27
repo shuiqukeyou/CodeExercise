@@ -16,13 +16,26 @@ grad = zeros(size(theta));
 %               You should set J to the cost.
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
-h = zeros(m,1)
-h = 1 / (1 + e^-(X*theta)) % 逻辑回归的方程h，同时也是g（θtX），m行1列，对应当前θ下的m个输出
-h
-J = -y' * log(h) - (1-y)'log(1-h)
-J = J/m
+h = zeros(m,1);
+z = X * theta; % 计算x的值
 
-grad = X' * (h-y)
+for i = 1:m
+  h(i) = 1 / (1 + e^-z(i)); % 逻辑回归的方程h，，m行1列，对应当前θ下的m个输出
+endfor
+
+t = 0;
+n = length(theta);
+for i = 2:n % 计算正规项，不含theta0
+  t = t + theta(i,:)^2;
+endfor
+
+J = -y' * log(h) - (1-y)' * log(1-h) + lambda/2*t;
+J = J/m; % 成本计算完毕
+
+theta0_temp = X'(1,:) * (h-y) /m; % 保存不需要正规化的theta0
+
+grad = (X' * (h-y) + lambda * theta)/ m ;
+grad(1) = theta0_temp; % 替换theta0
 
 
 

@@ -27,9 +27,9 @@ for i = 1:m
   h(i) = 1/(1 + e^-(z(i,1)));
 endfor
 J = (-y' * log(h) - (1-y)' * log(1 - h));
-J = J/m
+J = J/m;
 
-grad = X' * (h-y) / m
+grad = X' * (h-y) / m;
 
 
 
