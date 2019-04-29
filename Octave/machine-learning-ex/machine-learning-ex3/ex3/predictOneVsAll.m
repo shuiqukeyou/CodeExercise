@@ -8,14 +8,14 @@ function p = predictOneVsAll(all_theta, X)
 %  of values from 1..K (e.g., p = [1; 3; 1; 2] predicts classes 1, 3, 1, 2
 %  for 4 examples) 
 
-m = size(X, 1);
-num_labels = size(all_theta, 1);
+m = size(X, 1); % 5000
+num_labels = size(all_theta, 1); % 10
 
 % You need to return the following variables correctly 
-p = zeros(size(X, 1), 1);
+p = zeros(size(X, 1), 1); % 5000 x 1
 
 % Add ones to the X data matrix
-X = [ones(m, 1) X];
+X = [ones(m, 1) X];% 添加全1的列
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Complete the following code to make predictions using
@@ -28,9 +28,11 @@ X = [ones(m, 1) X];
 %       max element, for more information see 'help max'. If your examples 
 %       are in rows, then, you can use max(A, [], 2) to obtain the max 
 %       for each row.
-%       
+%   
 
+temp = X * all_theta'; % 进行预测
 
+[t,p] = max(temp,[],2); % 搜索每行的最大值的序号，即为预测值
 
 
 

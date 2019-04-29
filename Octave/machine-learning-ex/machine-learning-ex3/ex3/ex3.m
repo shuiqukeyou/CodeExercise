@@ -74,6 +74,7 @@ pause;
 fprintf('\nTraining One-vs-All Logistic Regression...\n')
 
 lambda = 0.1;
+# 5000训练集，每个是20X20像素
 [all_theta] = oneVsAll(X, y, num_labels, lambda);
 
 fprintf('Program paused. Press enter to continue.\n');

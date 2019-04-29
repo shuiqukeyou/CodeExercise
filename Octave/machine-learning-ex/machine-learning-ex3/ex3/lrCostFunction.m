@@ -35,7 +35,16 @@ grad = zeros(size(theta));
 %           temp(1) = 0;   % because we don't add anything for j = 0  
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
+% 这个函数实质上是执行了若干组的成本和梯度的计算，单级神经网络实际上就是n个逻辑回归
+h = sigmoid(X * theta); % sigmoid向量
+temp = theta.^2; % 成本正规项
+temp(1,1) = 0; % 第一项置0
+temp = lambda /2 * sum(temp);% 正规项求和 
+J = ((-y' * log(h) - (1-y)' * log(1 - h)) + temp) / m ; # 成本计算（含正规）
 
+temp = theta;
+temp(1,1) = 0;% 将lambda_1置0
+grad = (X' * (h-y) + lambda * temp)/m;
 
 
 

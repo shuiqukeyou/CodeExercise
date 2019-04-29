@@ -21,7 +21,14 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+X = [ones(m,1) X]; % 添加偏置
+X = X'; % 转换X
+temp = Theta1 * X;
+temp = sigmoid(temp);
 
+temp = [ones(1,m);temp];
+temp = Theta2 * temp;
+[t,p] = max(temp',[],2); % 搜索每行的最大值的序号，即为预测值
 
 
 
