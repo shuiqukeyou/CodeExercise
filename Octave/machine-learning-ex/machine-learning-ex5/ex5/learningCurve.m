@@ -54,6 +54,21 @@ error_val   = zeros(m, 1);
 % ---------------------- Sample Solution ----------------------
 
 
+for i = 1:m
+  X_temp = X([1:i],:); # 取1~m个样本进行训练
+  y_temp = y([1:i],:); # 取出1~m的标签
+  theta = trainLinearReg(X_temp, y_temp, lambda); # 训练
+  
+  j1 = linearRegCostFunction(X_temp, y_temp, theta, 0);
+  #j1 = sum(((X_temp * theta) - y_temp) .^ 2) / (2 * m); # 计算训练集错误率
+
+  # j1 = sum(((X_temp * theta) - y_temp) .^ 2)/ (2 * m);
+  error_train(i,1) = j1;
+  
+  j2 = linearRegCostFunction(Xval, yval, theta, 0);
+  # j2 = sum(((Xval * theta) - yval) .^ 2) / (2 * m); # 计算交叉验证错误率
+  error_val(i,1) = j2;
+endfor
 
 
 

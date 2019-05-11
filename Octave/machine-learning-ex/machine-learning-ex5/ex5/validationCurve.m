@@ -40,7 +40,15 @@ error_val = zeros(length(lambda_vec), 1);
 %
 
 
-
+for i = 1:length(lambda_vec)
+  theta = trainLinearReg(X, y, lambda_vec(i)); % 使用当前的lambda进行训练
+  
+  j1 = linearRegCostFunction(X, y, theta, 0); # 训练错误率
+  error_train(i,1) = j1;
+  
+  j2 = linearRegCostFunction(Xval, yval, theta, 0); # 训练错误率
+  error_val(i,1) = j2;
+endfor
 
 
 

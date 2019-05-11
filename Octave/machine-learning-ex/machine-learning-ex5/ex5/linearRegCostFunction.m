@@ -18,10 +18,16 @@ grad = zeros(size(theta));
 %
 %               You should set J to the cost and grad to the gradient.
 %
+h = X * theta; # 计算h
+J = sum((h - y) .^ 2)/ (2*m); # 成本
+theta_temp = theta;
+theta_temp(1,1) = 0; # 去除theat0
+J = J + lambda * sum(theta_temp .^ 2)/ (2*m); # 正规项
 
 
+temp = (h-y)'; # 计算每个theta时都需要使用
 
-
+grad = (temp * X + lambda * theta_temp')/m;
 
 
 
