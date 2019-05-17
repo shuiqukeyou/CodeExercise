@@ -5,7 +5,7 @@ function word_indices = processEmail(email_contents)
 %   the body of an email and returns a list of indices of the 
 %   words contained in the email. 
 %
-
+#email_contents
 % Load Vocabulary
 vocabList = getVocabList();
 
@@ -21,28 +21,28 @@ word_indices = [];
 % hdrstart = strfind(email_contents, ([char(10) char(10)]));
 % email_contents = email_contents(hdrstart(1):end);
 
-% Lower case
+% Lower case(全小写)
 email_contents = lower(email_contents);
 
-% Strip all HTML
+% Strip all HTML（去除HTML）
 % Looks for any expression that starts with < and ends with > and replace
 % and does not have any < or > in the tag it with a space
 email_contents = regexprep(email_contents, '<[^<>]+>', ' ');
 
-% Handle Numbers
+% Handle Numbers（去除数字）
 % Look for one or more characters between 0-9
 email_contents = regexprep(email_contents, '[0-9]+', 'number');
 
-% Handle URLS
+% Handle URLS（去除URL）
 % Look for strings starting with http:// or https://
 email_contents = regexprep(email_contents, ...
                            '(http|https)://[^\s]*', 'httpaddr');
 
-% Handle Email Addresses
+% Handle Email Addresses（去除邮件地址）
 % Look for strings with @ in the middle
 email_contents = regexprep(email_contents, '[^\s]+@[^\s]+', 'emailaddr');
 
-% Handle $ sign
+% Handle $ sign（去除符号）
 email_contents = regexprep(email_contents, '[$]+', 'dollar');
 
 
@@ -96,6 +96,14 @@ while ~isempty(email_contents)
     % Note: You can use strcmp(str1, str2) to compare two strings (str1 and
     %       str2). It will return 1 only if the two strings are equivalent.
     %
+    #email_contents
+    m = size(vocabList, 1);
+    for i = 1:m
+        if strcmp(vocabList{i}, str)
+        word_indices = [word_indices; i];
+        break
+      endif
+    endfor
 
 
 
