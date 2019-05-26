@@ -20,8 +20,25 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
-
-
+m = size(X,1);
+for i = 1:m
+  temp_x =  X(i,:); # 遍历每个x
+  l = -1; # 每轮初始化
+  n = -1; # 每轮初始化
+  for j = 1:K
+    temp_1 = temp_x - centroids(j,:);
+    temp_1 = temp_1 .^ 2 ;
+    temp_1 = sum(temp_1); # 计算距离的平方
+    if l == -1
+      l = temp_1; # 若l的值没有修改过，直接替换
+      n = j;
+    elseif l > temp_1
+      l = temp_1; # 如果l的距离比当前的点要大，保存当前距离
+      n = j;
+    endif
+  endfor
+  idx(i) = n; # 保存所属分类
+endfor
 
 
 

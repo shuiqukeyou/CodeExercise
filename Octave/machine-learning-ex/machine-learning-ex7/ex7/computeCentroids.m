@@ -25,8 +25,16 @@ centroids = zeros(K, n);
 %
 % Note: You can use a for-loop over the centroids to compute this.
 %
-
-
+for i = 1:K # 遍历每个中心
+  count = 0; # 每个中心的计数变量
+  for j = 1:m
+    if idx(j) == i # 如果属于这个分类
+      centroids(i,:) = centroids(i,:) + X(j,:); # 向量累加
+      count += 1;
+    endif
+  endfor
+  centroids(i,:) = centroids(i,:) / count; # 求均值
+endfor
 
 
 

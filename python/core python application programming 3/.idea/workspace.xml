@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de46d3aa-46d6-4965-8834-1d2b1d98d154" name="Default Changelist" comment="py核心编程第三版">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python crash course/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python crash course/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/computeCentroids.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/computeCentroids.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/findClosestCentroids.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/findClosestCentroids.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/kMeansInitCentroids.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/kMeansInitCentroids.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/pca.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/pca.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/projectData.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/projectData.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/recoverData.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/recoverData.m" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,9 +72,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="90" y="-8" width="1838" height="1096" extended-state="6" />
+    <frame x="91" y="-8" width="1837" height="1096" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2495831" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
