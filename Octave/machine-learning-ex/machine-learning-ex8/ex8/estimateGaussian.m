@@ -21,8 +21,10 @@ sigma2 = zeros(n, 1);
 %               should contain variance of the i-th feature.
 %
 
-
-
+for i = 1:n
+  mu(i) = mean(X(:,i));
+  sigma2(i) = var(X(:,i),1);# 求每个系数的平方和(1/m系数)
+endfor
 
 
 
