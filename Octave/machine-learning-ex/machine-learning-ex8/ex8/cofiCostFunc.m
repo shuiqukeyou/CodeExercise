@@ -39,19 +39,31 @@ Theta_grad = zeros(size(Theta));
 %        Theta_grad - num_users x num_features matrix, containing the 
 %                     partial derivatives w.r.t. to each element of Theta
 %
+Theta = Theta';
+
+Y_c = X * Theta;
+Y_c = Y_c - Y; # 计算出计算值和真值的差值（其中一些值其实不存在）
+Y_c = Y_c .* R; # 将其中不存在的值置0
+Y_c = Y_c .^ 2; # 逐项平方
+J = sum(Y_c(:))/2;
 
 
+X_temp = X .^ 2;
+J = J + lambda * sum(X_temp(:))/2;
+
+Theta_temp = Theta .^ 2;
+J = J + lambda * sum(Theta_temp(:))/2;
+
+Y_c = X * Theta;
+Y_c = Y_c - Y; # 计算出计算值和真值的差值（其中一些值其实不存在）
+Y_c = Y_c .* R; # 将其中不存在的值置0
 
 
+X_grad = Y_c * Theta';
+Theta_grad = Y_c' * X;
 
-
-
-
-
-
-
-
-
+X_grad = X_grad + lambda * X;
+Theta_grad = Theta_grad + lambda * Theta';
 
 
 
