@@ -1,6 +1,5 @@
 import pickle
-
-import time
+import matplotlib.pyplot as plt
 
 from functions import *
 from gradient import numerical_gradient
@@ -83,7 +82,7 @@ class TwoLayerNet:
         accuracy = np.sum(y == t) / float(x.shape[0])
         return accuracy
 
-    # x:输入数据, t:监督数据
+    # 慢速梯度下降
     def numerical_gradient(self, x, t):
         loss_W = lambda W: self.loss(x, t)
 
@@ -169,11 +168,17 @@ if __name__ == '__main__':
     (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
 
     train_loss_list = []
+    train_acc_list = []
+    test_acc_list = []
 
     iters_num = 10000
     train_size = x_train.shape[0]
     batch_size = 100
     learning_rate = 0.1
+
+    iter_per_epoch = max(train_size / batch_size, 1)
+
+
 
     network = TwoLayerNet(input_size=784, hidden_size=50, output_size=10)
 
@@ -183,10 +188,22 @@ if __name__ == '__main__':
         t_batch = t_train[batch_mask]
 
 
-        grad = network.numerical_gradient(x_batch, t_batch)
+        # grad = network.numerical_gradient(x_batch, t_batch)
+        grad = network.gradient(x_batch, t_batch) # 使用源码里的快速梯度法
 
-        for key in ("W1","b1","W2","b3"):
+        for key in ("W1","b1","W2","b2"):
             network.params[key] -= learning_rate * grad[key]
 
         loss = network.loss(x_batch, t_batch)
         train_loss_list.append(loss)
+
+        if i % iter_per_epoch == 0:
+            train_acc = network.accuracy(x_train, t_train)
+            test_acc = network.accuracy(x_test, t_test)
+            train_acc_list.append(train_acc)
+            test_acc_list.append(test_acc)
+            print("训练正确率， 测试正确率|" + str(train_acc) + " " + str(test_acc))
+
+    x = np.arange(len(train_loss_list))
+    plt.plot(x,train_loss_list)
+    plt.show()
