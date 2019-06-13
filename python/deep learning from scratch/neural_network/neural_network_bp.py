@@ -1,5 +1,5 @@
 import numpy as np
-
+import pickle
 def softmax(a):
     c = np.max(a)
     exp_a = np.exp(a - c) # 防溢出
@@ -14,6 +14,9 @@ def cross_entropy_error(y,t):
         y = y.reshape(1,y.size)# 重整标签
     batch_size = y.shape[0]
     return -np.sum(t * np.log(y + 1e-7))/batch_size
+
+def sigmoid(x):
+    return 1/(1 + np.exp(-x))
 
 # 乘法单元的向前和向后传播
 class MuLayer:
@@ -116,6 +119,50 @@ class SoftmaxWithLoss:
         dx = (self.y - self.t) / batch_size
 
         return dx
+
+# 以下为复制源码部分的数据读取
+def _change_one_hot_label(X):
+    T = np.zeros((X.size, 10))
+    for idx, row in enumerate(T):
+        row[X[idx]] = 1
+
+    return T
+
+def load_mnist(normalize=True, flatten=True, one_hot_label=False):
+    """读入MNIST数据集
+
+    Parameters
+    ----------
+    normalize : 将图像的像素值正规化为0.0~1.0
+    one_hot_label :
+        one_hot_label为True的情况下，标签作为one-hot数组返回
+        one-hot数组是指[0,0,1,0,0,0,0,0,0,0]这样的数组
+    flatten : 是否将图像展开为一维数组
+
+    Returns
+    -------
+    (训练图像, 训练标签), (测试图像, 测试标签)
+    """
+
+    with open("./dataset/mnist.pkl", 'rb') as f:
+        dataset = pickle.load(f)
+
+    if normalize:
+        for key in ('train_img', 'test_img'):
+            dataset[key] = dataset[key].astype(np.float32)
+            dataset[key] /= 255.0
+
+    if one_hot_label:
+        dataset['train_label'] = _change_one_hot_label(dataset['train_label'])
+        dataset['test_label'] = _change_one_hot_label(dataset['test_label'])
+
+    if not flatten:
+        for key in ('train_img', 'test_img'):
+            dataset[key] = dataset[key].reshape(-1, 1, 28, 28)
+
+    return (dataset['train_img'], dataset['train_label']), (dataset['test_img'], dataset['test_label'])
+# 以上为复制源码的数据读取
+
 
 if __name__ == '__main__':
     apple = 100
