@@ -18,9 +18,8 @@ data_loader = MNISTLoader()
 optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate)
 
 """初始化可视化记录器"""
-# 指标可视化的记录器
 summary_writer = tf.summary.create_file_writer('./tensorboard')     # 参数为记录文件所保存的目录
-tf.summary.trace_on(profiler=True)  # 开启Trace（可选），用于查看计算图
+tf.summary.trace_on(graph=True, profiler=True)  # 开启Trace（可选），用于查看计算图
 
 # 训练（含可视化记录）
 num_batches = int(data_loader.num_train_data // batch_size * num_epochs)  # 获取总共可用的batch数
@@ -41,7 +40,7 @@ for batch_index in range(num_batches):
 
 # 绘制计算图在训练完成后
 with summary_writer.as_default():
-    tf.summary.trace_export(name="model_trace", step=0, profiler_outdir="./tensorboard")    # 保存Trace信息到文件（可选）
+    tf.summary.trace_export(name="model_trace", step=0, profiler_outdir="tensorboard")    # 保存Trace信息到文件（可选）
 
 
 
