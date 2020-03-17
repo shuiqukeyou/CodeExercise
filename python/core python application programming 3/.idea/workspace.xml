@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de46d3aa-46d6-4965-8834-1d2b1d98d154" name="Default Changelist" comment="py核心编程第三版">
-      <change beforePath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/computeCentroids.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/computeCentroids.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/findClosestCentroids.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/findClosestCentroids.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/kMeansInitCentroids.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/kMeansInitCentroids.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/pca.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/pca.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/projectData.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/projectData.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/recoverData.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../Octave/machine-learning-ex/machine-learning-ex7/ex7/recoverData.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../deep learning from scratch/.idea/deep learning from scratch.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../deep learning from scratch/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../deep learning from scratch/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../deep learning from scratch/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deep learning from scratch/numpy&amp;matplotlib/matplotlib_ex.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deep learning from scratch/numpy&amp;matplotlib/numpy_ex.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deep learning from scratch/numpy&amp;matplotlib/perceptron.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,28 +17,67 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/regular_expression_ex.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="624">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/regular_expression_ex.py" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="91" />
     <option name="width" value="925" />
     <option name="height" value="1087" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="core python application programming 3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="core python application programming 3" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../python crash course" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../E-HentaiCrawler" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -49,6 +90,34 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="regular_expression_ex" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="core python application programming 3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/regular_expression_ex.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.regular_expression_ex" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -68,18 +137,25 @@
       <option name="project" value="LOCAL" />
       <updated>1555483700587</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="正则表达式">
+      <created>1561989437204</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1561989437204</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="91" y="-8" width="1837" height="1096" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2495831" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2495831" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32917964" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -95,6 +171,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="py核心编程第三版" />
-    <option name="LAST_COMMIT_MESSAGE" value="py核心编程第三版" />
+    <MESSAGE value="正则表达式" />
+    <option name="LAST_COMMIT_MESSAGE" value="正则表达式" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/regular_expression_ex.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
