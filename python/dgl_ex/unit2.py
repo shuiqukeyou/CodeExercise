@@ -74,7 +74,7 @@ if __name__ == '__main__':
     fig.clf()
     ax = fig.subplots()
     nx_G = G.to_networkx().to_undirected()
-    draw(0)  # 绘制出每轮的预测结果
+    draw(0)  # 绘制出第一轮的预测结果
     plt.close()
 
     ani = animation.FuncAnimation(fig, draw, frames=len(all_logits), interval=200)
